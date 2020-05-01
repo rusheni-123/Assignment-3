@@ -12,7 +12,6 @@ R<-read.csv(file = "growth_data.csv",header = TRUE,sep = ",")
 R
 
 colnames(R)
-row.names(R)
 
 
 #Q7 Calculate the mean and standard deviation of tree circumference at the start and end of the study at both sites.
@@ -71,13 +70,22 @@ rowMeans(Southwest[,c(4:6)])
 
 growth_Northeast<-c(Northeast[,c(4:6)])
 growth_Northeast
+is.character(growth_Northeast)
+class(growth_Northeast)
+as.factor(growth_Northeast)
+
+
+
+
 p <-as.data.frame(growth_Northeast)
 growth_Southwest <-c(Southwest[,c(4:6)])
 q <-as.data.frame(growth_Southwest)
 ?t.test
 args(t.test)
-t.test(file=Northeast,)
 
 
 
+R$growthin10 <- rowMeans(R[,c(4:6)])
+R
+t.test(growthin10~R$Site,alternative="greater")
 
