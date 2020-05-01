@@ -84,9 +84,12 @@ q <-as.data.frame(growth_Southwest)
 ?t.test
 args(t.test)
 
-
+growthin10 <- rowMeans(R[,c(4:6)])
 
 R$growthin10 <- rowMeans(R[,c(4:6)])
 R
 t.test(growthin10~R$Site,alternative="greater")
 
+growthin10 <- rowMeans(R[,c(4:6)])
+
+wilcox.test(growthin10~R$Site,alternative="greater")
