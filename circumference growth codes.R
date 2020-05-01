@@ -50,10 +50,11 @@ sd(Southwest$Circumf_2019_cm)
  # The boxplot diagrams for both start and the end of the stduy  
 boxplot(Northeast$Circumf_2004_cm)
 boxplot(Northeast$Circumf_2019_cm)
-
+boxplot(Northeast$Circumf_2004_cm ~ Northeast$Circumf_2019_cm, horizontal = F)
 
 boxplot(Southwest$Circumf_2004_cm)
 boxplot(Southwest$Circumf_2019_cm)
+boxplot(Southwest$Circumf_2004_cm ~ Southwest$Circumf_2019_cm)
 
 #Q9 Calculate the mean growth over the past 10 years at each site.
  #run args() funtion to find the arguments needed for the rowMeans. 
