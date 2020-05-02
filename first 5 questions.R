@@ -6,7 +6,7 @@
 download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part1_files/gene_expression.tsv",
               destfile = "geneexpression.tsv")
 
-x<-read.table("geneexpression.tsv", header = TRUE, stringsAsFactors = FALSE , row.names = 1 )
+x<-read.table("geneexpression.tsv", header = TRUE)
 head(x)
 str(x)
 read.table(file="geneexpression.tsv")
@@ -18,10 +18,14 @@ load("geneexpression.RData")
 #Aded a new column using x$mean<- rowmeans(x)
 #found the means of first six genes using mean (x[1:6]) comand.
 
-x$meanofsamples <- rowMeans(x)
 
-rowMeans(x[1:6,])
+meanofsamples<-rowMeans(x[,c(2:3)])
+meanofsamples
+x$meanofsamples<-rowMeans(x[,c(2:3)])
 x
+x[1:6,]
+
+
 
 
 ## 3rd question
