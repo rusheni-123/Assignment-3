@@ -18,14 +18,11 @@ load("geneexpression.RData")
 #Aded a new column using x$mean<- rowmeans(x)
 #found the means of first six genes using mean (x[1:6]) comand.
 
-
 meanofsamples<-rowMeans(x[,c(2:3)])
 meanofsamples
 x$meanofsamples<-rowMeans(x[,c(2:3)])
 x
 x[1:6,]
-
-
 
 
 ## 3rd question
