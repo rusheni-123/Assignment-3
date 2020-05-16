@@ -29,18 +29,106 @@ x[1:6,]
 # by running the oder ()comand it is possible to list the rowmeans of the genes
 
 order(x$meanofsamples)
-meanofsample_order <-order(x$meanofsamples)
-meanofsamples_order
+x[order(-x$meanofsamples),
+  
+x_sorted <-x[order(-x$meanofsamples),]
+head(x_sorted,10)
 
-args(order)
+
 
 ##4th question
-# used the x$meanofsamples[which((x$meanofsamples[,3]>10))] to find the genes wich has mean greater than 10.
+# used the x$[which((x$meanofsamples>10),] to find the genes wich has mean greater than 10.
+filtered <- subset(x, meanofsamples > 10)
+nrow(filtered)
 
-x$meanofsamples[which(x$meanofsamples[,3]>10)] 
-x[,3]>10 
 
 ##5th question
-# using his()comand draw the histogram.
-b<-c(mean)
-hist(mean)
+# using hist()comand draw the histogram.
+
+hist(x$meanofsamples)
+
+hist(x$Mean,breaks=10)
+
+
+#PART 2
+
+#PART 2
+library("seqinr")
+library("rBLAST")
+library("R.utils")
+
+##Download the whole set of E. coli gene DNA sequences and use gunzip to decompress
+
+download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part2_files/sample.fa",
+              destfile = "ecoligene")
+
+## delete fasta file if any exist
+unlink("ecoligene")
+## uncompress the file
+R.utils::gunzip("ecoligene",overwrite=TRUE)
+gunzip("ecoligene")
+
+## create the BLAST DB.
+makeblastdb("ecoligene",dbtype="nucl", "-parse_seqids")
+
+## DOWNLOAD THE SAMPLE FILE
+download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part2_files/sample.fa",
+              destfile = "sample")
+## read in toR
+b <- read.fasta("sample")
+myseq <- b[[9]]
+myseq
+
+str(myseq)
+
+#question 2
+## calculate the GC content
+str(myseq)
+seqinr:: GC(myseq)
+
+# question 3
+
+download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part2_files/mutblast_functions.R",
+              destfile = "mublastfunction")
+source("mublastfunction")
+res <- myblastn_(myseq= myseq, db = "ecoligene")
+
+
+##Download the whole set of E. coli gene DNA sequences and use gunzip to decompress
+
+download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part2_files/sample.fa",
+              destfile = "ecoligene")
+
+## delete fasta file if any exist
+unlink("ecoligene")
+## uncompress the file
+R.utils::gunzip("ecoligene",overwrite=TRUE)
+gunzip("ecoligene")
+
+## create the BLAST DB.
+makeblastdb("ecoligene",dbtype="nucl", "-parse_seqids")
+
+## DOWNLOAD THE SAMPLE FILE
+
+download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part2_files/sample.fa",
+              destfile = "sample")
+## read in toR
+
+b <- read.fasta("sample")
+myseq <- b[[9]]
+myseq
+
+str(myseq)
+
+#question 2
+## calculate the GC content
+
+str(myseq)
+seqinr:: GC(myseq)
+
+# question 3
+
+download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part2_files/mutblast_functions.R",
+              destfile = "mublastfunction")
+source("mublastfunction")
+res <- myblastn_(myseq= myseq, db = "ecoligene")
