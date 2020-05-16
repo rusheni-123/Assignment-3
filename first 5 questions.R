@@ -52,7 +52,7 @@ hist(x$Mean,breaks=10)
 
 #PART 2
 
-#PART 2
+
 library("seqinr")
 library("rBLAST")
 library("R.utils")
