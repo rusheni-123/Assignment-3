@@ -46,13 +46,14 @@ In oder to save the file as an object, run the command. x<-read.table("geneexpre
 The name of the new column saved as meanofth samples by using comand - meanofthesample <- and then to find the means of each row used the function rowmeans. here we need to get means for every raw of first six genes and only for 2nd and 3rd columns. therefor it specified as (x[,c(2:3)]). therfore full code can be write as x$meanofsamples<-rowMeans(x[,c(2:3)]) and to chek the means for first six genes run the   x[1:6,].
 following table show the new column namely,meanofsample.
 
-           GeneID SRR5150592 SRR5150593 meanofsamples
-1 ENSG00000223972          1          0           0.5
-2 ENSG00000227232          0          1           0.5
-3 ENSG00000278267          0          0           0.0
-4 ENSG00000243485          0          0           0.0
-5 ENSG00000284332          0          0           0.0
-6 ENSG00000237613          0          0           0.0
+           GeneID | SRR5150592| SRR5150593| meanofsamples
+                  |:--------:|:----------:|:-----------:|
+1 ENSG00000223972 |         1|          0 |          0.5|
+2 ENSG00000227232 |         0|          1 |          0.5|
+3 ENSG00000278267 |         0|         0  |         0.0 |
+4 ENSG00000243485 |         0|          0 |         0.0 |
+5 ENSG00000284332 |        0 |         0  |        0.0  |
+6 ENSG00000237613 |         0|        0   |         0.0 |
 ## question -3 (List the 10 genes with the highest mean expression)
 
 to list the genes required to use order function. here in this question only required to list 10 genes with highest means. therefore need to mentioned the number of genes along with the sorting comand. full comad which can be use for this is x_sorted <-x[order(-x$meanofsamples),] and chek the gens bu using head comand head(x_sorted,10).
