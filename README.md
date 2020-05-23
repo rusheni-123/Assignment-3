@@ -71,17 +71,18 @@ following table show the new column namely,meanofsample.
 To list the genes required to use order function. here in this question only required to list 10 genes with highest means. therefore need to mentioned the number of genes along with the sorting comand. full comad which can be use for this is x_sorted <-x[order(-x$meanofsamples),] and chek the gens bu using head comand head(x_sorted,10).
  following table show the first ten genes with highest genes.
  
-  *              GeneID |SRR5150592| SRR5150593 |meanofsamples
-1. 8683 |ENSG00000115414  |   311857  |   206347  |259102.0
-2. 58210| ENSG00000210082 |   145916  |   163288  |154602.0
-3. 20619|ENSG00000075624  |   133983  |   116762  |125372.5
-4. 58234| ENSG00000198886 |    91596  |   99943   |95769.5
-5. 42896|ENSG00000137801  |   95158   |   74546   |84852.0
-6. 58222|ENSG00000198804  |    79832  |   84774   |82303.0
-7. 58238| ENSG00000198786 |   74570   |   83589   |79079.5
-8. 25675|ENSG00000196924  |    88225  |    66413  |77319.0
-9. 58225|ENSG00000198712  |   76108   |  77108    |76608.0
-10. 49030|ENSG00000108821  |    80342  |   60127   |70234.5
+  
+             Gena ID          |SRR5150592 | SRR5150593| meanofsamples
+1. 8683 |    ENSG00000115414  |   311857  |   206347  |259102.0
+2. 58210|    ENSG00000210082  |   145916  |   163288  |154602.0
+3. 20619|    ENSG00000075624  |   133983  |   116762  |125372.5
+4. 58234|    ENSG00000198886  |    91596  |   99943   |95769.5
+5. 42896|    ENSG00000137801  |   95158   |   74546   |84852.0
+6. 58222|    ENSG00000198804  |    79832  |   84774   |82303.0
+7. 58238|    ENSG00000198786  |   74570   |   83589   |79079.5
+8. 25675|    ENSG00000196924  |    88225  |    66413  |77319.0
+9. 58225|    ENSG00000198712  |   76108   |  77108    |76608.0
+10.49030|   ENSG00000108821   |    80342  |   60127   |70234.5
 
 ## Question 4-(Determine the number of genes with a mean <10)
 
