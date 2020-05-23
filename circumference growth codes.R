@@ -78,7 +78,6 @@ as.factor(growth_Northeast)
 
 
 
-
 p <-as.data.frame(growth_Northeast)
 growth_Southwest <-c(Southwest[,c(4:6)])
 q <-as.data.frame(growth_Southwest)

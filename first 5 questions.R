@@ -55,7 +55,6 @@ nrow(filtered)
 # using hist()comand draw the histogram.
 
 hist(x$meanofsamples)
-
 hist(x$Mean,breaks=20) 
 
 

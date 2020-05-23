@@ -221,7 +221,6 @@ calculated mean growths are.....
 
 
 
-
 Following codes run to solve the problem.
 
 growth_Northeast<-c(Northeast[,c(4:6)])
