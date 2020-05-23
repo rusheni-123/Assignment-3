@@ -82,7 +82,7 @@ To list the genes required to use order function. here in this question only req
 7. 58238|    ENSG00000198786  |   74570   |   83589   |79079.5
 8. 25675|    ENSG00000196924  |    88225  |    66413  |77319.0
 9. 58225|    ENSG00000198712  |   76108   |  77108    |76608.0
-10.49030|   ENSG00000108821   |    80342  |   60127   |70234.5
+10. 49030|   ENSG00000108821   |    80342  |   60127   |70234.5
 
 ## Question 4-(Determine the number of genes with a mean <10)
 
