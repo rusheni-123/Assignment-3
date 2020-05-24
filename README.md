@@ -53,9 +53,9 @@ MIT © [Yourname]()
 
 # PART-1.
 
-## Question-1(Read in the file, making the gene accession numbers the row names. Show a table of values for thefirst six genes.)
+## Question-1(Read in the file, making the gene accession numbers the row names. Show a table of values for the first six genes).
 
-To addres the first question initially requiredto download the given file "gene_expression.tsv” contains RNA-seq count data for two samples of interest.Therefore used the comand download.file ("URL",destfile="name").in this comand, destfile="name" used to give the destination and name for the downloaded file.secondly,read the file using comand read.table("name of the file").then to make an object, the data set needed to be saved under a name in environment. So for that, the name of the object will be given as "x"
+In order to address this question, initially download the given file "gene_expression.tsv” contains RNA-seq count data for two samples of interest.Therefore used the command download.file ("URL",destfile="name"). In this command, destfile="name" used to give the destination and name for the downloaded file.secondly,read the file using command read.table("name of the file").Then to make an object, the data set needed to be saved under a name in environment. So for that, the name of the object will be given as "x"
 In oder to save the file as an object, run the command. x<-read.table("geneexpression.tsv", header = TRUE)
  then looked the first six genes using head(x) and str(x) by data comand.
  full code use to solve the problem is,
@@ -147,7 +147,7 @@ hist(x$Mean,breaks=20)
 
 histogram obtained as follows.
 
-![histogram](http://118.138.234.73:8787/files/project/Assignment-3-final/Histogram.png)
+![histogram](http://118.138.234.73:8787/files/project/Assignment-3-final/Histogram.png,"histogram")
 
 ## Question 6 -(Import this csv file into an R object. What are the column names?)
 
@@ -201,12 +201,12 @@ Following codes run to obtain the boxplots for sites.
 for notheast,
 boxplot(Northeast$Circumf_2004_cm)
 boxplot(Northeast$Circumf_2019_cm)
-boxplot(Northeast$Circumf_2004_cm ~ Northeast$Circumf_2019_cm, horizontal = F)
+
 
 For southwest,
 boxplot(Southwest$Circumf_2004_cm)
 boxplot(Southwest$Circumf_2019_cm)
-boxplot(Southwest$Circumf_2004_cm ~ Southwest$Circumf_2019_cm)
+
  
 Box plots for northeast,
  
