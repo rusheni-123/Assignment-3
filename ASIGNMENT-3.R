@@ -80,3 +80,8 @@ download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master
               destfile = "mublastfunction")
 source("mublastfunction")
 res <- myblastn_(myseq= myseq, db = "ecoligene")
+# question 4
+mutator function
+
+res <- myblastn_tab(myseq = sots, db = "sample")
+head(res)

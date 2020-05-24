@@ -178,7 +178,7 @@ Mean and SD of the notheast site are respectively mean(Northeast$Circumf_2004_cm
 
 mean and SD  of the south east sites are mean(Southwest$Circumf_2004_cm)-5.076,SD(Southwest$Circumf_2004_cm)-1.060527,mean(Southwest$Circumf_2019_cm)- 59.772,SD(Southwest$Circumf_2019_cm)- 22.57784.
 
-#Question 8-(Make a box plot of tree circumference at the start and end of the study at both sites) 
+## Question 8-(Make a box plot of tree circumference at the start and end of the study at both sites) 
 
 Box plots were drawn for both the sites using  the function boxplot() to obtain the box plot for specific column.since it is for both the sites, it is better to run the function by selecting Northeast and Southwest objects instead R.
 
@@ -204,7 +204,7 @@ Boxplotsfor southwest
 ![boxplot](http://118.138.234.73:8787/files/project/Assignment-3-final/Rplot%20of%20SW%20in%202019.jpeg)
 ![boxplot](http://118.138.234.73:8787/files/project/Assignment-3-final/Rplot%20of%20SW%20of%202004.jpeg)
 
-#Question 9-(Calculate the mean growth over the past 10 years at each site.) 
+## Question 9-(Calculate the mean growth over the past 10 years at each site.) 
 
 To calculate the meangrowth over the past 10 years at each site run args() funtion to find the arguments needed for the rowMeans. The reason for the use of rowMeans is that this fucntion will produce the mean in considering the every row where as columns are being sellected.column 4 and column 6 are specified as they hold data for a 10 years time period.
 following codes run to solve the problem,
