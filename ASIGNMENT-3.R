@@ -1,94 +1,103 @@
-#PART 2
-
+# PART 2
+#3
 
 library("seqinr")
-library("rBLAST")
 library("R.utils")
+library("rBLAST")
+library("ape")
+library("ORFik")
+library("Biostrings")
 
-##Download the whole set of E. coli gene DNA sequences and use gunzip to decompress
 
-download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part2_files/sample.fa",
-              destfile = "ecoligene")
+## Question-1 (Download the whole set of E. coli gene DNA sequences and use gunzip to
+decompress. Use the makeblast() function to create a blast database. How many sequences are present in the E.coli set?
 
-## delete fasta file if any exist
-unlink("ecoligene")
+#Download the whole set of E. coli gene DNA sequences and use gunzip to decompress)
+#The link with fa.gv is selected as in the 1st question, it is mentioned to decompress and fa.gv extensioned file are compressed files.
+#so the link was selected and fa.gz extension was given to destile name.
+
+download.file('ftp://ftp.ensemblgenomes.org/pub/bacteria/release-42/fasta/bacteria_0_collection/escherichia_coli_str_k_12_substr_mg1655/cds/Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.cds.all.fa.gz',
+              destfile = "ecoligene.fa.gz")
+
 ## uncompress the file
-R.utils::gunzip("ecoligene",overwrite=TRUE)
-gunzip("ecoligene")
+#?R.utils package was used whereas gunzip command assit in unzipping the document. The name of the file was given with the extension.
+#?overwrite comman was selected as True to keep the original file in the system.
 
-## create the BLAST DB.
-makeblastdb("ecoligene",dbtype="nucl", "-parse_seqids")
+R.utils::gunzip("ecoligene.fa.gz",overwrite=T)
 
-## DOWNLOAD THE SAMPLE FILE
-download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part2_files/sample.fa",
-              destfile = "sample")
-## read in toR
-b <- read.fasta("sample")
-myseq <- b[[9]]
-myseq
+## Making blast data base
 
-str(myseq)
-
-#question 2
-## calculate the GC content
-str(myseq)
-seqinr:: GC(myseq)
-
-# question 3
-
-download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part2_files/mutblast_functions.R",
-              destfile = "mublastfunction")
-source("mublastfunction")
-res <- myblastn_(myseq= myseq, db = "ecoligene")
-
-
-##Download the whole set of E. coli gene DNA sequences and use gunzip to decompress
-
-download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part2_files/sample.fa",
-              destfile = "ecoligene")
-
-## delete fasta file if any exist
-unlink("ecoligene")
-## uncompress the file
-R.utils::gunzip("ecoligene",overwrite=TRUE)
-gunzip("ecoligene")
-
-## create the BLAST DB.
-makeblastdb("ecoligene",dbtype="nucl", "-parse_seqids")
-
-## DOWNLOAD THE SAMPLE FILE
-
-download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part2_files/sample.fa",
-              destfile = "sample")
-## read in toR
-
-b <- read.fasta("sample")
-myseq <- b[[9]]
-myseq
-
-str(myseq)
-
-#question 2
-## calculate the GC content
-
-str(myseq)
-seqinr:: GC(myseq)
-
-# question 3
-
-download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part2_files/mutblast_functions.R",
-              destfile = "mublastfunction")
-source("mublastfunction")
-res <- myblastn_(myseq= myseq, db = "ecoligene")
+makeblastdb("ecoligene.fa",dbtype = "nucl","-parse_seqids)
 
 
 
 
-##Q4
+## Question-2 (Download the sample fasta sequences and read them in as above. For your allocated sequence, determine the length (in bp) and the proportion of GC bases)
+
+###Download the sample fasta sequences and read them in as above. For your allocated sequence,
+###determine the length (in bp) and the proportion of GC bases.
+#downloading the file given in assigment pdf file which is of extension fa.
+#Since the file is of extension fa,it is clear that the file is already uncompressseed.
+
+download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part2_files/sample.fa
+            ",
+destfile = "sample.fa")
+
+#read.fasta command is given to read the downloaded fasta sequences.
+#downloaded fastas are saved in working directory as "samplefastas"
+samplefastas <- read.fasta("sample.fa")
+
+#one fasta sequence is been selected from the downloaded fasta sequence.
+#9th sequence is been selected and saved in the working directory as
+"Groupseq"
+Groupseq <-samplefastas [[9]]
+Groupseq
+
+#length of 9th fasta seq
+seqinr::getLength(Groupseq)
+
+#length of GC propotion
+seqinr::GC(Groupseq)
+
+## Question-3 (You will be provided with R functions to create BLAST databases and perform blast searches. Use blast to identify what E. coli gene your sequence matches best. Show a table of the top 3 hits including
+percent identity, E-value and bit scores)
+
+#You will be provided with R functions to create BLAST databases and
+perform blast searches.
+#Use blast to identify what E. coli gene your sequence matches best.
+#Show a table of the top 3 hits including percent identity, E-value and bit
+scores.
+
+
+#make the sequences of commands avaialble in environment, which would allow
+the user to run blast
+source("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part2_files/mutblast_functions.R
+            ")
+download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part2_files/mutblast_functions.R",destfile
+= "Markcodes.R")
+
+
+#select the myblastn_tab to run the blast.
+#run args() to identify the arguments needed in the command.
+args(myblastn_tab)
+
+#myseq=Groupseq whereas db="ecoligene.fa". db argument will be based on
+which data base the sequence analysis neede to be run.
+# The results of the blast wil be saved as a vector named A
+Groupseq_blast <-myblastn_tab(myseq=Groupseq,db="ecoligene.fa")
+Groupseq_blast
+str(Groupseq_blast)
+head(Groupseq_blast)
+
+
+
+
+
+## Question-4 (You will be provided with a function that enables you to make a set number of point mutations to your sequence of interest. Run the function and write an R code to check the number of mismatches between the original and mutated sequence.)
+
 #You will be provided with a function that enables you to make a set number of point mutations to your
 #sequence of interest. Run the function and write an R code to check the number of mismatches
 #between the original and mutated sequence.
-
 
 #Run the args() funtionn to determine the arguments needed to be fulfilled in order to run the code
 args(mutator)
@@ -130,7 +139,8 @@ nmismatch(alignment)
 
 
 
-#Q5
+# Question-5(Using the provided functions for mutating and BLASTing a sequence, determine the number and proportion of sites that need to be altered to prevent the BLAST search from matching the gene of origin. Because the mutation is random, you may need to run this test multiple times to get a reliable answer.)
+
 #Using the provided functions for mutating and BLASTing a sequence, determine the number and
 #proportion of sites that need to be altered to prevent the BLAST search from matching the gene of
 #origin. Because the mutation is random, you may need to run this test multiple times to get a reliable
@@ -211,6 +221,8 @@ test<- myblastn_tab(myseq = Groupseq_mut, db = "Groupseq.fa")
 test
 
 
-#Q6
+#Question 6-(Provide a chart or table that shows how the increasing proportion of mutated bases reduces the ability
+for BLAST to match the gene of origin. Summarise the results in 1 to 2 sentences
+)
 #Provide a chart or table that shows how the increasing proportion of mutated bases reduces the ability
 #for BLAST to match the gene of origin. Summarise the results in 1 to 2 sentences.

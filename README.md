@@ -1,5 +1,5 @@
 
-#subjest: SLE 712
+# subject: SLE 712
 # Project title
 
 ## Assigment 3
@@ -238,7 +238,7 @@ library("ORFik")
 library("Biostrings")
 
 
-##Question 1-Download the whole set of E. coli gene DNA sequences and use gunzip to decompress. Use the makeblast() function to create a blast database. How many sequences are present in the E.coli set?
+## Question 1-Download the whole set of E. coli gene DNA sequences and use gunzip to decompress. Use the makeblast() function to create a blast database. How many sequences are present in the E.coli set?
 
 #Download the whole set of E. coli gene DNA sequences and use gunzip to decompress
 The link with fa.gv is selected as in the 1st question, it is mentioned to decompress and fa.gv extensioned file are compressed files.
@@ -261,7 +261,7 @@ makeblastdb("ecoligene.fa",dbtype = "nucl","-parse_seqids")
 
 
 
-##Q2-Download the sample fasta sequences and read them in as above. For your allocated sequence, determine the length (in bp) and the proportion of GC bases.
+## Question 2 (Download the sample fasta sequences and read them in as above. For your allocated sequence, determine the length (in bp) and the proportion of GC bases.)
 
 #Download the sample fasta sequences and read them in as above. For the allocated sequence and determine the length (in bp) and the proportion of GC bases.
 Downloading the file given in assigment pdf file which is of extension fa.
@@ -287,7 +287,7 @@ seqinr::GC(Groupseq)
 
 
 
-##Q3-You will be provided with R functions to create BLAST databases and perform blast searches. Use blast to identify what E. coli gene your sequence matches best. Show a table of the top 3 hits including percent identity, E-value and bit scores.You will be provided with R functions to create BLAST databases and perform blast searches. Use blast to identify what E. coli gene your sequence matches best. Show a table of the top 3 hits including percent identity, E-value and bit scores.
+## Question 3 (You will be provided with R functions to create BLAST databases and perform blast searches. Use blast to identify what E. coli gene your sequence matches best. Show a table of the top 3 hits including percent identity, E-value and bit scores.You will be provided with R functions to create BLAST databases and perform blast searches. Use blast to identify what E. coli gene your sequence matches best. Show a table of the top 3 hits including percent identity, E-value and bit scores.)
 
 #make the sequences of commands avaialble in environment, which would allow the user to run blast
 source("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part2_files/mutblast_functions.R")
@@ -305,7 +305,7 @@ head(Groupseq_blast)
 
 
 
-##Q4 You will be provided with a function that enables you to make a set number of point mutations to your sequence of interest. Run the function and write an R code to check the number of mismatches between the original and mutated sequence.
+## Qustion 4  (You will be provided with a function that enables you to make a set number of point mutations to your sequence of interest. Run the function and write an R code to check the number of mismatches between the original and mutated sequence.)
 
 #Application of random mutations
 Run the args() funtionn to determine the arguments needed to be fulfilled in order to run the code.Run length(Groupseq) to check the length of the sequence. sequence will be Groupseq in this excercise. Complete the arguments for mutator function. Save the mutations as a vector named Groupseq_mut. Note that, myseq will be the selected sequence of interest. So in this case , it will be the Groupseq.nmut will be the number of random mutations which gonna be applied. This can be of any number less than the length of the sequence.
@@ -338,7 +338,7 @@ according to the answer, it can be assumed that there are 75 differnt sites in t
 
 
 
-##Q5 Using the provided functions for mutating and BLASTing a sequence, determine the number and proportion of sites that need to be altered to prevent the BLAST search from matching the gene of origin. Because the mutation is random, you may need to run this test multiple times to get a reliable answer.
+## Question 6  (Using the provided functions for mutating and BLASTing a sequence, determine the number and proportion of sites that need to be altered to prevent the BLAST search from matching the gene of origin. Because the mutation is random, you may need to run this test multiple times to get a reliable answer.)
 
 The basis of this question is to determinae the treshold of the blast so that the blast will be unable to recognise the gene from it's original sequence.
 
