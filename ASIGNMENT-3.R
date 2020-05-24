@@ -80,3 +80,13 @@ download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master
               destfile = "mublastfunction")
 source("mublastfunction")
 res <- myblastn_(myseq= myseq, db = "ecoligene")
+
+
+
+
+##Q4
+#You will be provided with a function that enables you to make a set number of point mutations to your
+#sequence of interest. Run the function and write an R code to check the number of mismatches
+#between the original and mutated sequence.
+
+mutator(myseq = )
