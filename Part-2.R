@@ -9,8 +9,7 @@ library("ORFik")
 library("Biostrings")
 
 
-## Question-1 (Download the whole set of E. coli gene DNA sequences and use gunzip to
-decompress. Use the makeblast() function to create a blast database. How many sequences are present in the E.coli set?
+## Question-1 (Download the whole set of E. coli gene DNA sequences and use gunzip to decompress. Use the makeblast() function to create a blast database. How many sequences are present in the E.coli set?
 
 #Download the whole set of E. coli gene DNA sequences and use gunzip to decompress)
 #The link with fa.gv is selected as in the 1st question, it is mentioned to decompress and fa.gv extensioned file are compressed files.
@@ -27,7 +26,7 @@ R.utils::gunzip("ecoligene.fa.gz",overwrite=T)
 
 ## Making blast data base
 
-makeblastdb("ecoligene.fa",dbtype = "nucl","-parse_seqids)
+makeblastdb("ecoligene.fa",dbtype = "nucl","-parse_seqids")
 
 
 
@@ -39,9 +38,7 @@ makeblastdb("ecoligene.fa",dbtype = "nucl","-parse_seqids)
 #downloading the file given in assigment pdf file which is of extension fa.
 #Since the file is of extension fa,it is clear that the file is already uncompressseed.
 
-download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part2_files/sample.fa
-            ",
-destfile = "sample.fa")
+download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part2_files/sample.fa",destfile = "sample.fa")
 
 #read.fasta command is given to read the downloaded fasta sequences.
 #downloaded fastas are saved in working directory as "samplefastas"
@@ -59,20 +56,16 @@ seqinr::getLength(Groupseq)
 #length of GC propotion
 seqinr::GC(Groupseq)
 
-## Question-3 (You will be provided with R functions to create BLAST databases and perform blast searches. Use blast to identify what E. coli gene your sequence matches best. Show a table of the top 3 hits including
-percent identity, E-value and bit scores)
+## Question-3 (You will be provided with R functions to create BLAST databases and perform blast searches. Use blast to identify what E. coli gene your sequence matches best. Show a table of the top 3 hits includingpercent identity, E-value and bit scores)
 
-#You will be provided with R functions to create BLAST databases and
-perform blast searches.
+#You will be provided with R functions to create BLAST databases and perform blast searches.
 #Use blast to identify what E. coli gene your sequence matches best.
 #Show a table of the top 3 hits including percent identity, E-value and bit
 scores.
 
 
-#make the sequences of commands avaialble in environment, which would allow
-the user to run blast
-source("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part2_files/mutblast_functions.R
-            ")
+#make the sequences of commands avaialble in environment, which would allow the user to run blast
+source("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part2_files/mutblast_functions.R")
 download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part2_files/mutblast_functions.R",destfile
 = "Markcodes.R")
 
@@ -81,8 +74,7 @@ download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master
 #run args() to identify the arguments needed in the command.
 args(myblastn_tab)
 
-#myseq=Groupseq whereas db="ecoligene.fa". db argument will be based on
-which data base the sequence analysis neede to be run.
+#myseq=Groupseq whereas db="ecoligene.fa". db argument will be based on which data base the sequence analysis neede to be run.
 # The results of the blast wil be saved as a vector named A
 Groupseq_blast <-myblastn_tab(myseq=Groupseq,db="ecoligene.fa")
 Groupseq_blast
