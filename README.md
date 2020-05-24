@@ -219,29 +219,46 @@ Boxplotsfor southwest
 
 ## Question 9-(Calculate the mean growth over the past 10 years at each site.) 
 
-To calculate the meangrowth over the past 10 years at each site run args() funtion to find the arguments needed for the rowMeans. The reason for the use of rowMeans is that this fucntion will produce the mean in considering the every row where as columns are being sellected.column 4 and column 6 are specified as they hold data for a 10 years time period.
-following codes run to solve the problem,
+# Creating the mean growth of the two subsets(Northeast and Southwest)
+
+Run args() funtion to find the arguments needed for the rowMeans. Northeast$Circumf_2004.The reason for the use of rowMeans is that this fucntion will produce the mean in considering the every row where as selective columns are being sellected.column 4 and column 6 are specified as they hold data for a 10 years time period.
+
 args(rowMeans)
-rowMeans(Northeast[,c(4:6)])
-rowMeans(Southwest[,c(4:6)])
-
-calculated mean growths are.....
-
-
-
-
-# Question 10-(Use the t.test and wilcox.test functions to estimate the p-value that the 10 year growth is different at the two sites.)
-
-
-
-Following codes run to solve the problem.
-
-growth_Northeast<-c(Northeast[,c(4:6)])
+growth_Northeast <- rowMeans(Northeast[,c(4:6)])
 growth_Northeast
-is.character(growth_Northeast)
-class(growth_Northeast)
-as.factor(growth_Northeast
+growth_Southwest <- rowMeans(Southwest[,c(4:6)])
+growth_Southwest
 
+# Insert the new column to both the table created under North_east and South_west
+
+syntax $ is used to add the new columns to each respective tables.Northeast$growth_Northeast will be adding the column known as growth_Northeast to Northeast table.Southwest$growth_Southwest will be adding the column known as growth_Southwest to Southwest table
+
+Northeast$growth_Northeast <-rowMeans(Northeast[,c(4:6)])
+Northeast
+Southwest$growth_Southwest <-rowMeans(Southwest[,c(4:6)])
+Southwest
+
+## Question 10-(Use the t.test and wilcox.test functions to estimate the p-value that the 10 year growth is different at the two sites.)
+
+# A new object named "growthin10" will be created which contains mean growth of last 10 years.rowmeans() function will be used which will be determing the means of every row.4 to 6 columns are been selected which contains 10 years' worth data.R is the data frame which is originally stored. Add the column growthin10 to the R 
+growthin10 <- rowMeans(R[,c(4:6)])
+growthin10
+R$growthin10 <- rowMeans(R[,c(4:6)])
+R
+
+#Application of t-test
+The syntax used below is for a two sample t-test. The reason for use of two sample t-test is that samples of interest are collected from two sides.
+t.test(growthin10~R$Site,alternative="greater")
+
+#Analysing t-test data
+Accoridng to the p value, since it is 1, it can be assume that the there is weak evidence aginst nulll hypothesis stating the fact that
+null hypothesis can not be rejected.
+The mean of northeast is 23.29467 where as mena of southwest is 32.38867. Accoridngly, the mean of southwest is greater than northeast
+
+#Analysing wilcox data
+wilcox.test(growthin10~R$Site,alternative="greater")
+
+###Part 2
 
 library("seqinr")
 library("R.utils")
