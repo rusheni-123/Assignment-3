@@ -34,9 +34,9 @@ x[1:6,]
 # in order to look the 10 genes run the head comand head(x_sorted,10).
 
 order(x$meanofsamples)
-x[order(-x$meanofsamples),
+x[order(-x$meanofsamples),]
 x_sorted <-x[order(-x$meanofsamples),]
- head(x_sorted,10)
+head(x_sorted,10)
 
 
 
@@ -50,11 +50,9 @@ filtered <- subset(x, meanofsamples > 10)
 nrow(filtered)
 
 
-##5th question
+##5th question (Make a histogram plot of the mean values in png format and paste it into your report)
 
 # using hist()comand draw the histogram.
 
-hist(x$meanofsamples)
-hist(x$Mean,breaks=20) 
-
+hist(x$meanofsample,main="distribution of mean",xlab="mean of samples",breaks=30)
 
