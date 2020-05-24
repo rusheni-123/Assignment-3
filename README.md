@@ -45,9 +45,8 @@ Mandhri Abeysooriya, Rusheni Senanayake and DR. Mark ziemann.
 
 
 ## License
-A short snippet describing the license (MIT, Apache etc)
-MIT © [Yourname]()
-=======
+
+licensed under the [GNU General Public License v3.0](LICENCE)
 
 
 
