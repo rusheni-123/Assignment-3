@@ -248,16 +248,16 @@ R
 
 #Application of t-test
 The syntax used below is for a two sample t-test. The reason for use of two sample t-test is that samples of interest are collected from two sides.
-t.test(growthin10~R$Site,alternative="greater")
+t.test(growth_Northeast,growth_Southwest)
 
 #Analysing t-test data
-Accoridng to the p value, since it is 1, it can be assume that the there is weak evidence aginst nulll hypothesis stating the fact that
-null hypothesis can not be rejected.
+According to the p value which is 9.662e-06, it can be assume that the there is strong evidence aginst nulll hypothesis stating the fact that null hypothesis can  be rejected.
 The mean of northeast is 23.29467 where as mena of southwest is 32.38867. Accoridngly, the mean of southwest is greater than northeast
 
 #Analysing wilcox data
-wilcox.test(growthin10~R$Site,alternative="greater")
-
+wilcox.test(growth_Northeast,growth_Southwest)
+A larer p value is obtained compared to t-test. Its assumed to be accurate as Wilcox.test relies onn different statstics.
+Since Wilcox test is non parametric, the results tend to be less sensitive with more robust.
 ###Part 2
 
 library("seqinr")

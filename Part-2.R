@@ -195,24 +195,37 @@ test
 
 #calcualting randomised blast search for 100 mismathes
 
-Groupseq_mut <- mutator(myseq=Groupseq_mut,100)
+Groupseq_mut <- mutator(myseq=Groupseq,100)
 test<- myblastn_tab(myseq = Groupseq_mut, db = "Groupseq.fa")
 test
 
 
+#test with 110 random mutations
+Groupseq_mut <- mutator(myseq=Groupseq,110)
+test<- myblastn_tab(myseq = Groupseq_mut, db = "Groupseq.fa")
+test
+
+
+#test with 120 random mutations
+Groupseq_mut <- mutator(myseq=Groupseq,120)
+test<- myblastn_tab(myseq = Groupseq_mut, db = "Groupseq.fa")
+test
+
+#test with 130 random mutations
+Groupseq_mut <- mutator(myseq=Groupseq,130)
+test<- myblastn_tab(myseq = Groupseq_mut, db = "Groupseq.fa")
+test
+
+#test with 140 random mutations
+Groupseq_mut <- mutator(myseq=Groupseq,140)
+test<- myblastn_tab(myseq = Groupseq_mut, db = "Groupseq.fa")
+test
 #test with 150 random mutations
-Groupseq_mut <- mutator(myseq=Groupseq_mut,150)
+Groupseq_mut <- mutator(myseq=Groupseq,150)
 test<- myblastn_tab(myseq = Groupseq_mut, db = "Groupseq.fa")
 test
 
 
-#test with 200 random mutations
-Groupseq_mut <- mutator(myseq=Groupseq_mut,200)
-test<- myblastn_tab(myseq = Groupseq_mut, db = "Groupseq.fa")
-test
-
-
-#Question 6-(Provide a chart or table that shows how the increasing proportion of mutated bases reduces the ability for BLAST to match the gene of origin. Summarise the results in 1 to 2 sentences
-)
+#Question 6-(Provide a chart or table that shows how the increasing proportion of mutated bases reduces the ability for BLAST to match the gene of origin. Summarise the results in 1 to 2 sentences)
 #Provide a chart or table that shows how the increasing proportion of mutated bases reduces the ability
 #for BLAST to match the gene of origin. Summarise the results in 1 to 2 sentences.

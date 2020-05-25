@@ -85,18 +85,14 @@ Southwest
 
 ## Question 10(Use the t.test and wilcox.test functions to estimate the p-value that the 10 year growth is different at the two sites).
 
-#A new object named "growthin10" will be created which contains mean growth of last 10 years.rowmeans() function will be used which will be determing the means of every row.
-#4 to 6 columns are been selected which contains 10 years' worth data.
-#R is the data frame which is originally stored.
-#Add the column growthin10 to the R 
-growthin10 <- rowMeans(R[,c(4:6)])
-growthin10
-R$growthin10 <- rowMeans(R[,c(4:6)])
-R
+#Select the data frames which compose of mean of growth of two sites:growth_Northeast and growth_Southwest
 
 ### Application of t-test
 #The syntax used below is for a two sample t-test. The reason for use of two sample t-test is that samples of interest are collected from two sides.
-t.test(growthin10~R$Site,alternative="greater")
+
+t.test(growth_Northeast,growth_Southwest)
 
 ### Application of Wilcox.test
-wilcox.test(growthin10~R$Site,alternative="greater")
+
+args(wilcox.test)
+wilcox.test(growth_Northeast,growth_Southwest)
