@@ -1,5 +1,5 @@
 # PART 2
-#3
+
 
 library("seqinr")
 library("R.utils")
@@ -18,13 +18,13 @@ library("Biostrings")
 download.file('ftp://ftp.ensemblgenomes.org/pub/bacteria/release-42/fasta/bacteria_0_collection/escherichia_coli_str_k_12_substr_mg1655/cds/Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.cds.all.fa.gz',
               destfile = "ecoligene.fa.gz")
 
-## uncompress the file
+### uncompress the file
 #?R.utils package was used whereas gunzip command assit in unzipping the document. The name of the file was given with the extension.
 #?overwrite comman was selected as True to keep the original file in the system.
 
 R.utils::gunzip("ecoligene.fa.gz",overwrite=T)
 
-## Making blast data base
+### Making blast data base
 
 makeblastdb("ecoligene.fa",dbtype = "nucl","-parse_seqids")
 
@@ -33,8 +33,8 @@ makeblastdb("ecoligene.fa",dbtype = "nucl","-parse_seqids")
 
 ## Question-2 (Download the sample fasta sequences and read them in as above. For your allocated sequence, determine the length (in bp) and the proportion of GC bases)
 
-###Download the sample fasta sequences and read them in as above. For your allocated sequence,
-###determine the length (in bp) and the proportion of GC bases.
+#ownload the sample fasta sequences and read them in as above. For your allocated sequence,
+#determine the length (in bp) and the proportion of GC bases.
 #downloading the file given in assigment pdf file which is of extension fa.
 #Since the file is of extension fa,it is clear that the file is already uncompressseed.
 
@@ -50,24 +50,23 @@ samplefastas <- read.fasta("sample.fa")
 Groupseq <-samplefastas [[9]]
 Groupseq
 
-#length of 9th fasta seq
+### length of 9th fasta seq
 seqinr::getLength(Groupseq)
 
-#length of GC propotion
+### length of GC propotion
 seqinr::GC(Groupseq)
 
 ## Question-3 (You will be provided with R functions to create BLAST databases and perform blast searches. Use blast to identify what E. coli gene your sequence matches best. Show a table of the top 3 hits includingpercent identity, E-value and bit scores)
 
 #You will be provided with R functions to create BLAST databases and perform blast searches.
 #Use blast to identify what E. coli gene your sequence matches best.
-#Show a table of the top 3 hits including percent identity, E-value and bit
-scores.
+#Show a table of the top 3 hits including percent identity, E-value and bitscores.
 
 
 #make the sequences of commands avaialble in environment, which would allow the user to run blast
-source("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part2_files/mutblast_functions.R")
 download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part2_files/mutblast_functions.R",destfile
-= "Markcodes.R")
+              = "mublast.R")
+source("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part2_files/mutblast_functions.R")
 
 
 #select the myblastn_tab to run the blast.
@@ -125,7 +124,7 @@ alignment
 #when run the command comparestrings, ? will depicts the positions of the aligned sequence which have altered. 
 compareStrings(alignment)
 
-#number of mismatch is calculated by nmismatch() fucntion.
+### number of mismatch is calculated by nmismatch() fucntion.
 nmismatch(alignment)
 #according to the answer, it can be assumed that there are 75 differnt sites in the process of randoming 100 positions in the sequence.
 
@@ -139,7 +138,7 @@ nmismatch(alignment)
 #answer.
 
 
-# The basis of this question is to determinae the treshold of the blast so that the blast will be unable to recognise the gene from it's original sequence.
+## The basis of this question is to determinae the treshold of the blast so that the blast will be unable to recognise the gene from it's original sequence.
 
 #running blast index
 #creating a data base for the selected sequence 
@@ -194,27 +193,26 @@ Groupseq_mut <- mutator(myseq=Groupseq,90)
 test <- myblastn_tab(myseq = Groupseq_mut, db = "Groupseq.fa")
 test
 
-# calcualting randomised blast search for 100 mismathes
+#calcualting randomised blast search for 100 mismathes
 
 Groupseq_mut <- mutator(myseq=Groupseq_mut,100)
 test<- myblastn_tab(myseq = Groupseq_mut, db = "Groupseq.fa")
 test
 
 
-##test with 150 random mutations
+#test with 150 random mutations
 Groupseq_mut <- mutator(myseq=Groupseq_mut,150)
 test<- myblastn_tab(myseq = Groupseq_mut, db = "Groupseq.fa")
 test
 
 
-##test with 200 random mutations
+#test with 200 random mutations
 Groupseq_mut <- mutator(myseq=Groupseq_mut,200)
 test<- myblastn_tab(myseq = Groupseq_mut, db = "Groupseq.fa")
 test
 
 
-#Question 6-(Provide a chart or table that shows how the increasing proportion of mutated bases reduces the ability
-for BLAST to match the gene of origin. Summarise the results in 1 to 2 sentences
+#Question 6-(Provide a chart or table that shows how the increasing proportion of mutated bases reduces the ability for BLAST to match the gene of origin. Summarise the results in 1 to 2 sentences
 )
 #Provide a chart or table that shows how the increasing proportion of mutated bases reduces the ability
 #for BLAST to match the gene of origin. Summarise the results in 1 to 2 sentences.

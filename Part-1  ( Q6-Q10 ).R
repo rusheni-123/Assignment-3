@@ -23,7 +23,7 @@ colnames(R)
 #"" syntax is used in northeast as northeast is a character. 
 #In, Northeast <-(R[R$Site=="northeast",]) the comma after "northeast" suggest that the function is run in all columns.
 
-#Northeast
+### Northeast
 Northeast <-(R[R$Site=="northeast",])
 Northeast
 mean(Northeast$Circumf_2004_cm)
@@ -32,7 +32,7 @@ mean(Northeast$Circumf_2019_cm)
 sd(Northeast$Circumf_2019_cm)
 
 
-#Southwest
+### Southwest
 Southwest <-(R[R$Site=="southwest",])
 Southwest
 mean(Southwest$Circumf_2004_cm)
@@ -46,7 +46,7 @@ sd(Southwest$Circumf_2019_cm)
 ##Question 8 (Make a box plot of tree circumference at the start and end of the study at both sites).
 #use the function boxplot() to obtain the box plot for specific column.
 #since it is for both the sites, run the function by selecting Northeast and Southwest objects instead of selecting  R.
-# The boxplot diagrams for both start and the end of the stduy  
+### The boxplot diagrams for both start and the end of the stduy  
 boxplot(Northeast$Circumf_2004_cm)
 boxplot(Northeast$Circumf_2019_cm)
 
@@ -54,12 +54,13 @@ boxplot(Northeast$Circumf_2019_cm)
 boxplot(Southwest$Circumf_2004_cm)
 boxplot(Southwest$Circumf_2019_cm)
 
+### Making a one box plot 
 #Combining all the 4 box plots to a single box plot diagram. Use function xlab() to give the title for x-axis, ylab() for title to y-axis,main() is for title of the plot,Names() function is used to give names to each sectors.
 boxplot(main="circumferences of trees in two sites",Northeast$Circumf_2004_cm,Northeast$Circumf_2019_cm,Southwest$Circumf_2004_cm,Southwest$Circumf_2019_cm,names=c("N2004","N2019","S2004","S2019"),ylab="Circumference(cm)",xlab="Trees")
 
-##Question 9(Calculate the mean growth over the past 10 years at each site).
+## Question 9(Calculate the mean growth over the past 10 years at each site).
 
-#Creating the mean growth of the two subsets(Northeast and Southwest)
+### Creating the mean growth of the two subsets(Northeast and Southwest)
 
 #run args() funtion to find the arguments needed for the rowMeans. Northeast$Circumf_2004
 #The reason for the use of rowMeans is that this fucntion will produce the mean in considering the every row where as selective columns are being sellected.
@@ -71,7 +72,7 @@ growth_Northeast
 growth_Southwest <- rowMeans(Southwest[,c(4:6)])
 growth_Southwest
 
-#Insert the new column to both the table created under North_east and South_west
+### Insert the new column to both the table created under North_east and South_west
 
 #$ syntax is used to add the new columns to each respective tables.
 #Northeast$growth_Northeast will be adding the column known as growth_Northeast to Northeast table.
@@ -82,8 +83,7 @@ Northeast
 Southwest$growth_Southwest <-rowMeans(Southwest[,c(4:6)])
 Southwest
 
-#Question 10(Use the t.test and wilcox.test functions to estimate the p-value that the 10 year growth is different at
-##the two sites).
+## Question 10(Use the t.test and wilcox.test functions to estimate the p-value that the 10 year growth is different at the two sites).
 
 #A new object named "growthin10" will be created which contains mean growth of last 10 years.rowmeans() function will be used which will be determing the means of every row.
 #4 to 6 columns are been selected which contains 10 years' worth data.
@@ -94,9 +94,9 @@ growthin10
 R$growthin10 <- rowMeans(R[,c(4:6)])
 R
 
-#Application of t-test
+### Application of t-test
 #The syntax used below is for a two sample t-test. The reason for use of two sample t-test is that samples of interest are collected from two sides.
 t.test(growthin10~R$Site,alternative="greater")
 
-
+### Application of Wilcox.test
 wilcox.test(growthin10~R$Site,alternative="greater")
