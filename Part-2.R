@@ -136,7 +136,7 @@ nmismatch(alignment)
 
 
 
-# Question-5(Using the provided functions for mutating and BLASTing a sequence, determine the number and proportion of sites that need to be altered to prevent the BLAST search from matching the gene of origin. Because the mutation is random, you may need to run this test multiple times to get a reliable answer.)
+# Question5(Using the provided functions for mutating and BLASTing a sequence, determine the number and proportion of sites that need to be altered to prevent the BLAST search from matching the gene of origin. Because the mutation is random, you may need to run this test multiple times to get a reliable answer.)
 
 #Using the provided functions for mutating and BLASTing a sequence, determine the number and
 #proportion of sites that need to be altered to prevent the BLAST search from matching the gene of
@@ -215,10 +215,10 @@ res <- replicate(n=10, my_blast_test(myseq=Groupseq, nmut=300))
 res
 mean(res)
 
+#Number of sites that neede to be altered 250 bases.
 
 
-
-#Question 6-(Provide a chart or table that shows how the increasing proportion of mutated bases reduces the ability for BLAST to match the gene of origin. Summarise the results in 1 to 2 sentences)
+# Question 6(Provide a chart or table that shows how the increasing proportion of mutated bases reduces the ability for BLAST to match the gene of origin. Summarise the results in 1 to 2 sentences)
 #Provide a chart or table that shows how the increasing proportion of mutated bases reduces the ability
 #for BLAST to match the gene of origin. Summarise the results in 1 to 2 sentences.
 
