@@ -58,6 +58,7 @@ In order to address this question, initially download the given file "gene_expre
 In oder to save the file as an object, run the command. x<-read.table("geneexpression.tsv", header = TRUE)
  then looked the first six genes using head(x) and str(x) by data comand.
  full code use to solve the problem is,
+```{r}
  
 download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part1_files/gene_expression.tsv",
               destfile = "geneexpression.tsv")
@@ -66,6 +67,7 @@ x<-read.table("geneexpression.tsv", header = TRUE)
 head(x)
 str(x)
 read.table(file="geneexpression.tsv")
+```
 
 ## Question-2(Make a new column which is the mean of the other columns. Show a table of values for the first sixgenes.)
 
@@ -75,39 +77,20 @@ Define the column in the table using the symbol($).The reason for the use of row
 
 Code to use in solving problem is,
 
+```{r}
+
 meanofsamples<-rowMeans(x[,c(2:3)])
 x$meanofsamples<-rowMeans(x[,c(2:3)])
 x[1:6,]
+```
 
 
 Following table show the new column namely,meanofsample.
 
 
-|col 1|col 2|col 3|
-|:---:|:---:|:---:|
-|1    |     |     |
 
 
 
-
-
-    |   GeneID        | SRR5150592   | SRR5150593 | meanofsamples |
-    
-    |    :---:        |  :---:       |  :---:     |    :---:      |
-    
-    | ENSG00000223972 | 1            | 0          | 0.5           |
-    
-    | ENSG00000227232 | 0            | 1          | 0.5           |
-    
-    | ENSG00000227232 | 0            | 1          | 0.5           |
-    
-    | ENSG00000278267 | 0            | 0          | 0.0           |
-     
-    | ENSG00000243485 | 0            | 0          | 0.0           |
-    
-    | ENSG00000284332 | 0            | 0          | 0.0           |
-    
-    | ENSG00000237613 | 0            | 0          | 0.0           |
 
  
  
