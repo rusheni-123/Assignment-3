@@ -78,22 +78,16 @@ Define the column in the table using the symbol($).The reason for the use of row
 Code to use in solving problem is,
 
 ```{r}
-
 meanofsamples<-rowMeans(x[,c(2:3)])
 x$meanofsamples<-rowMeans(x[,c(2:3)])
 x[1:6,]
+table(x)
 ```
-
-
-Following table show the new column namely,meanofsample.
-
-
-
-
-
-
- 
- 
+a  |   b  |     c
+---| ---- |  ----
+1  |   1  |
+2     2
+2
  
 ## Question -3 (List the 10 genes with the highest mean expression)
 
