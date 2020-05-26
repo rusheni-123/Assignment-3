@@ -80,8 +80,14 @@ Groupseq_blast
 str(Groupseq_blast)
 head(Groupseq_blast)
 
-
-
+#########only write this description of microbe in rdeport and then delete it from the script,###################
+#This microbe belongs to 
+#Description-heme export ABC transporter permease
+#Gene ID-b2200
+#Species-Escherichia coli str. K-12 substr. MG1655
+#Location-Chromosome:2296362-2297024
+#Gene trees-EGGT00170000111466 (Pan-taxonomic Compara)
+###############################################################################
 
 
 ## Question-4 (You will be provided with a function that enables you to make a set number of point mutations to your sequence of interest. Run the function and write an R code to check the number of mismatches between the original and mutated sequence.)
@@ -98,7 +104,7 @@ args(mutator)
 #Save the mutations as a vector named Groupseq_mut.
 #Note that, myseq will be the selected sequence of interest. So in this case , it will be the Groupseq.
 #nmut will be the number of random mutations which gonna be applied. This can be of any number less than the length of the sequence.
-
+Groupseq
 length(Groupseq)
 args(mutator)
 Groupseq_mut<-mutator(myseq = Groupseq,nmut =100)
@@ -151,81 +157,98 @@ makeblastdb(file="Groupseq.fa",dbtype = "nucl")
 
 #Groupseq-mut will be named as an object which will save the 10 ramdom mutations.  
 #data base of interest will be the data base created for Groupseq.
-#myblastn_tab will be the function to run the blast
-#test with 10 random mutations
-Groupseq_mut <- mutator(myseq=Groupseq,10)
-test <- myblastn_tab(myseq = Groupseq_mut, db = "Groupseq.fa")
-test
-length(Groupseq_mut)
+#myblastn_tab will be the function to run the blast.Initially test with 10 random mutations and increase the mutations gradually.
+#Since the final answer needed to be the maximum number of mutations which will not recognise the mutated sequence with original sequence, the function is been applied. 
+#In this function, output will be given as 0 for null(mutated sequence is no longer recognised as a sequence related to originl sequence due to number of mutations  applied) and 1 when the mutated sequence is recognised as a mutated version of original sequence.
+#A new function named "my_blast_test is been declared where the signature of the function composed of myseq which is the sequrence of interest(mutated sequence),and nmut for number of randomm mutations needed to be applied to the sequence of interest.
+#The body of the function will be composing of the ----------- which will be needed to excute the function.
+my_blast_test <- function(myseq,nmut) {
+  
+  Groupseq_mut <- mutator(myseq,nmut)
+  
+  test <- myblastn_tab(myseq = Groupseq_mut, db = "Groupseq.fa")
+  
+  if (is.null(test)) {
+    result=0
+  } else {
+    result=1
+  }
+  
+  return (result)
+  
+}
+#Application of the function(my_blast_test)
+#use the replicate to run the code many times.keep increasing nmuts
+#mean(res) will be giving the propotion of succesful blasts
+res <- replicate(n=10, my_blast_test(myseq=Groupseq, nmut=10))
+res
+mean(res)
 
-#test with 20 random mutations
-Groupseq_mut <- mutator(myseq=Groupseq,20)
-test2 <- myblastn_tab(myseq = Groupseq_mut, db = "Groupseq.fa")
-test2
-#test with 30 random mutations
-Groupseq_mut <- mutator(myseq=Groupseq,30)
-test3 <- myblastn_tab(myseq = Groupseq_mut, db = "Groupseq.fa")
-test3
-#test with 40 random mutations
-Groupseq_mut <- mutator(myseq=Groupseq,40)
-test <- myblastn_tab(myseq = Groupseq_mut, db = "Groupseq.fa")
-test
+res <- replicate(n=10, my_blast_test(myseq=Groupseq, nmut=20))
+res
+mean(res)
 
-#calcualte the length of the sequence which has 50 mutations
-length(Groupseq_mut)
-Groupseq_mut <- mutator(myseq=Groupseq,50)
-test<- myblastn_tab(myseq = Groupseq_mut, db = "Groupseq.fa")
-test
-#test with 60 random mutations
-Groupseq_mut <- mutator(myseq=Groupseq,60)
-test <- myblastn_tab(myseq = Groupseq_mut, db = "Groupseq.fa")
-test
-#test with 70 random mutations
-Groupseq_mut <- mutator(myseq=Groupseq,70)
-test <- myblastn_tab(myseq = Groupseq_mut, db = "Groupseq.fa")
-test
-#test with 80 random mutations
-Groupseq_mut <- mutator(myseq=Groupseq,80)
-test <- myblastn_tab(myseq = Groupseq_mut, db = "Groupseq.fa")
-test
-#test with 90 random mutations
-Groupseq_mut <- mutator(myseq=Groupseq,90)
-test <- myblastn_tab(myseq = Groupseq_mut, db = "Groupseq.fa")
-test
+res <- replicate(n=10, my_blast_test(myseq=Groupseq, nmut=30))
+res
+mean(res)
 
-#calcualting randomised blast search for 100 mismathes
+res <- replicate(n=10, my_blast_test(myseq=Groupseq, nmut=40))
+res
+mean(res)
 
-Groupseq_mut <- mutator(myseq=Groupseq,100)
-test<- myblastn_tab(myseq = Groupseq_mut, db = "Groupseq.fa")
-test
+res <- replicate(n=10, my_blast_test(myseq=Groupseq, nmut=50))
+res
+mean(res)
+res <- replicate(n=10, my_blast_test(myseq=Groupseq, nmut=100))
+res
+mean(res)
+res <- replicate(n=10, my_blast_test(myseq=Groupseq, nmut=150)) 
+res
+mean(res)
+res <- replicate(n=10, my_blast_test(myseq=Groupseq, nmut=200)) 
+res
+mean(res)
+res <- replicate(n=10, my_blast_test(myseq=Groupseq, nmut=250))
+res
+mean(res)
+res <- replicate(n=10, my_blast_test(myseq=Groupseq, nmut=300))
+res
+mean(res)
 
 
-#test with 110 random mutations
-Groupseq_mut <- mutator(myseq=Groupseq,110)
-test<- myblastn_tab(myseq = Groupseq_mut, db = "Groupseq.fa")
-test
-
-
-#test with 120 random mutations
-Groupseq_mut <- mutator(myseq=Groupseq,120)
-test<- myblastn_tab(myseq = Groupseq_mut, db = "Groupseq.fa")
-test
-
-#test with 130 random mutations
-Groupseq_mut <- mutator(myseq=Groupseq,130)
-test<- myblastn_tab(myseq = Groupseq_mut, db = "Groupseq.fa")
-test
-
-#test with 140 random mutations
-Groupseq_mut <- mutator(myseq=Groupseq,140)
-test<- myblastn_tab(myseq = Groupseq_mut, db = "Groupseq.fa")
-test
-#test with 150 random mutations
-Groupseq_mut <- mutator(myseq=Groupseq,150)
-test<- myblastn_tab(myseq = Groupseq_mut, db = "Groupseq.fa")
-test
 
 
 #Question 6-(Provide a chart or table that shows how the increasing proportion of mutated bases reduces the ability for BLAST to match the gene of origin. Summarise the results in 1 to 2 sentences)
 #Provide a chart or table that shows how the increasing proportion of mutated bases reduces the ability
 #for BLAST to match the gene of origin. Summarise the results in 1 to 2 sentences.
+
+#In this question,the need to take the propotion of succesul blast hits needed to be taken as a vector in order to draw a graph. 
+#In order to do, a fuction is declared naming run-trials which composed of myseq,NMUTS,Ntrials in the signature of the function.In this function,the body will composed of
+#the object "res" (n,replicate and my_blast_test).
+
+run_trials<- function(myseq,NMUTS,Ntrials){
+  replicate_response <-replicate(n=Ntrials,my_blast_test(myseq = myseq,nmut = NMUTS))
+  res <-mean(replicate_response)
+  return (res)
+}
+#A vector will be declared which composed of number of random mutations which are neede to be applied to the gene of interst(Group_seq)
+#50,100,150,200,250,300 are used as number of  random mutations applied.
+NMUTS<-c(50,100,150,200,250,300).
+
+#A 'for loop' is created to get the corresponding results related to 50,100,150,200,250,300
+#Initially a vector was created which named mutation_list. Index was declared as 1 since the output values should not be replacing the previous values in muatation_list
+#An object named 'Runtrial_results was created which composed results of run_trial function.
+mutation_list<- c()
+i=1
+for (Numberof_mut in NMUTS) {
+  print(Numberof_mut)
+  Runtrial_results<-run_trials(myseq = Groupseq,NMUTS = Numberof_mut,Ntrials = 10)
+  print(v)
+  mutation_list[i]<-Runtrial_results
+  i=i+1
+}
+mutation_list
+#Plotting the graph for NMUTS=X and mutation_list=y
+plot(NMUTS,mutation_list,xlab="Number of mutated sites",ylab="propotion of succcessful blasts",main="How elevation of mutated bases affect BLAST performance",type="l")
+#According to the graph, it can be concluded that the with increase of number of mutated bases in a sequence , the performance of the blast decreases gradually.Eventually,blast will no longer recognise the mutated sequence as a sequence which is mutated from original.
+#In this graph,at 250 random mutations, the mutated sequence will be unidentical to the sequence of interest.
