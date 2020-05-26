@@ -82,6 +82,15 @@ x[1:6,]
 
 Following table show the new column namely,meanofsample.
 
+
+|col 1|col 2|col 3|
+|:---:|:---:|:---:|
+|1    |     |     |
+
+
+
+
+
     |   GeneID        | SRR5150592   | SRR5150593 | meanofsamples |
     
     |    :---:        |  :---:       |  :---:     |    :---:      |
