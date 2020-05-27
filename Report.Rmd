@@ -2,8 +2,8 @@
 title: "Assignment-3"
 author: "Mandhri Abeysooriya and Rusheni Senanayake"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 theme: cosmo
 ---
 
@@ -83,13 +83,16 @@ Histogram were drwn using hist() function and for easy identification break it t
 
 Codes use to obtain histogram is,
 
+
 hist(x$meanofsamples)
 hist(x$meanofsample,main="distribution of mean",xlab="mean of samples",breaks=30)
-
+mean_xsample<-x$meanofsamples
 
 ```{r,chunck,echo=TRUE}
-hist(x$meanofsample,main="distribution of mean",xlab="mean of samples",breaks=30)
+hist(mean_xsample,main="distribution of mean",xlab="mean of samples",breaks=30)
+
 ```
+
 
 ## Question 6 -(Import this csv file into an R object. What are the column names?)
 
