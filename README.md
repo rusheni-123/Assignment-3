@@ -79,21 +79,6 @@ meanofsamples<-rowMeans(x[,c(2:3)])
 x$meanofsamples<-rowMeans(x[,c(2:3)])
 x[1:6,]
 
-
-Following table show the new column namely,meanofsample.
-
-    | GeneID        | SRR5150592| SRR5150593| meanofsamples|
-    |  :---:        |  :---:    |  :---:    |    :---:     |
-    |ENSG00000223972|1          |0          |0.5|
-    |ENSG00000227232|0          | 1         |0.5|
-    |ENSG00000227232|0          |1          |0.5|
-    |ENSG00000278267|0          |0          |0.0|
-    |ENSG00000243485|0          |0          |0.0|
-    |ENSG00000284332|0          |0          |0.0|
-    |ENSG00000237613|0          |0          |0.0|
-
- 
- 
  
 ## Question -3 (List the 10 genes with the highest mean expression)
 
@@ -105,22 +90,7 @@ x[order(-x$meanofsamples),
 x_sorted <-x[order(-x$meanofsamples),]
 head(x_sorted,10)
  
- 
-Following table show the first ten genes with highest genes.
- 
- 
-  
-             Gena ID          |SRR5150592 | SRR5150593| meanofsamples
-1. 8683 |    ENSG00000115414  |   311857  |   206347  |259102.0
-2. 58210|    ENSG00000210082  |   145916  |   163288  |154602.0
-3. 20619|    ENSG00000075624  |   133983  |   116762  |125372.5
-4. 58234|    ENSG00000198886  |    91596  |   99943   |95769.5
-5. 42896|    ENSG00000137801  |   95158   |   74546   |84852.0
-6. 58222|    ENSG00000198804  |    79832  |   84774   |82303.0
-7. 58238|    ENSG00000198786  |   74570   |   83589   |79079.5
-8. 25675|    ENSG00000196924  |    88225  |    66413  |77319.0
-9. 58225|    ENSG00000198712  |   76108   |  77108    |76608.0
-10. 49030|   ENSG00000108821   |    80342  |   60127   |70234.5
+
 
 ## Question 4-(Determine the number of genes with a mean <10)
 
@@ -131,7 +101,6 @@ Codes use to solving problem is,
 filtered <- subset(x, meanofsamples > 10)
 nrow(filtered)
 
-There were 15032 genes with means less than 10.
 
 ## Question 5 -(Make a histogram plot of the mean values in png format and paste it into your report.)
 
@@ -142,11 +111,6 @@ Codes use to obtain histogram is,
 hist(x$meanofsamples)
 hist(x$Mean,breaks=20)
 
-
-
-histogram obtained as follows.
-
-![histogram](http://118.138.234.73:8787/files/project/Assignment-3-final/Histogram.png,"histogram")
 
 ## Question 6 -(Import this csv file into an R object. What are the column names?)
 
@@ -159,8 +123,6 @@ R<-read.csv(file = "growth_data.csv",header = TRUE,sep = ",")
 R
 colnames(R)
 
-Column names of R object are as follows.
-"Site","TreeID", "Circumf_2004_cm" ,"Circumf_2009_cm","Circumf_2014_cm", "Circumf_2019_cm"
 
 
 
@@ -187,9 +149,6 @@ sd(Southwest$Circumf_2004_cm)
 mean(Southwest$Circumf_2019_cm)
 sd(Southwest$Circumf_2019_cm)
 
-Mean and SD of the notheast site are respectively mean(Northeast$Circumf_2004_cm)- 5.078 and SD(Northeast$Circumf_2004_cm)  1.059127 mean(Northeast$Circumf_2019_cm)-40.052, SD(Northeast$Circumf_2019_cm)-16.90443
-
-mean and SD  of the south east sites are mean(Southwest$Circumf_2004_cm)-5.076,SD(Southwest$Circumf_2004_cm)-1.060527,mean(Southwest$Circumf_2019_cm)- 59.772,SD(Southwest$Circumf_2019_cm)- 22.57784.
 
 ## Question 8-(Make a box plot of tree circumference at the start and end of the study at both sites) 
 
@@ -206,20 +165,11 @@ For southwest,
 boxplot(Southwest$Circumf_2004_cm)
 boxplot(Southwest$Circumf_2019_cm)
 
- 
-Box plots for northeast,
- 
-![boxplot](http://118.138.234.73:8787/files/project/Assignment-3-final/Rplot%20for%20NE%20in%202004.jpeg)
-![boxplot](http://118.138.234.73:8787/files/project/Assignment-3-final/Rplot%20of%20NE%20%20for%202019.jpeg)
 
-Boxplotsfor southwest
-
-![boxplot](http://118.138.234.73:8787/files/project/Assignment-3-final/Rplot%20of%20SW%20in%202019.jpeg)
-![boxplot](http://118.138.234.73:8787/files/project/Assignment-3-final/Rplot%20of%20SW%20of%202004.jpeg)
 
 ## Question 9-(Calculate the mean growth over the past 10 years at each site.) 
 
-# Creating the mean growth of the two subsets(Northeast and Southwest)
+### Creating the mean growth of the two subsets(Northeast and Southwest)
 
 Run args() funtion to find the arguments needed for the rowMeans. Northeast$Circumf_2004.The reason for the use of rowMeans is that this fucntion will produce the mean in considering the every row where as selective columns are being sellected.column 4 and column 6 are specified as they hold data for a 10 years time period.
 
@@ -240,7 +190,7 @@ Southwest
 
 ## Question 10-(Use the t.test and wilcox.test functions to estimate the p-value that the 10 year growth is different at the two sites.)
 
-# A new object named "growthin10" will be created which contains mean growth of last 10 years.rowmeans() function will be used which will be determing the means of every row.4 to 6 columns are been selected which contains 10 years' worth data.R is the data frame which is originally stored. Add the column growthin10 to the R 
+### A new object named "growthin10" will be created which contains mean growth of last 10 years.rowmeans() function will be used which will be determing the means of every row.4 to 6 columns are been selected which contains 10 years' worth data.R is the data frame which is originally stored. Add the column growthin10 to the R 
 growthin10 <- rowMeans(R[,c(4:6)])
 growthin10
 R$growthin10 <- rowMeans(R[,c(4:6)])
@@ -258,7 +208,8 @@ The mean of northeast is 23.29467 where as mena of southwest is 32.38867. Accori
 wilcox.test(growth_Northeast,growth_Southwest)
 A larer p value is obtained compared to t-test. Its assumed to be accurate as Wilcox.test relies onn different statstics.
 Since Wilcox test is non parametric, the results tend to be less sensitive with more robust.
-###Part 2
+
+# Part- 2
 
 library("seqinr")
 library("R.utils")
@@ -270,22 +221,22 @@ library("Biostrings")
 
 ## Question 1-Download the whole set of E. coli gene DNA sequences and use gunzip to decompress. Use the makeblast() function to create a blast database. How many sequences are present in the E.coli set?
 
-#Download the whole set of E. coli gene DNA sequences and use gunzip to decompress
+### Download the whole set of E. coli gene DNA sequences and use gunzip to decompress
 The link with fa.gv is selected as in the 1st question, it is mentioned to decompress and fa.gv extensioned file are compressed files.
 so the link was selected and fa.gz extension was given to destile name.
 
 download.file('ftp://ftp.ensemblgenomes.org/pub/bacteria/release-42/fasta/bacteria_0_collection/escherichia_coli_str_k_12_substr_mg1655/cds/Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.cds.all.fa.gz',
               destfile = "ecoligene.fa.gz")
 
-#uncompress the file
+### uncompress the file
 R.utils package was used whereas gunzip command assit in unzipping the document. The name of the file was given with the extension.
 overwrite comman was selected as True to keep the original file in the system.
 R.utils::gunzip("ecoligene.fa.gz",overwrite=T)
 
-# Making blast data base
+### Making blast data base
 makeblastdb("ecoligene.fa",dbtype = "nucl","-parse_seqids")
 
-#Number of sequences present in E.coli set
+### Number of sequences present in E.coli set
 4140
 
 
@@ -299,19 +250,19 @@ Since the file is of extension fa,it is clear that the file is already uncompres
 download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part2_files/sample.fa",
               destfile = "sample.fa")
 
-#read.fasta command is given to read the downloaded fasta sequences.
+### read.fasta command is given to read the downloaded fasta sequences.
 downloaded fastas are saved in working directory as "samplefastas"
 samplefastas <- read.fasta("sample.fa")
 
-#one fasta sequence is been selected from the downloaded fasta sequence.
+### one fasta sequence is been selected from the downloaded fasta sequence.
 9th sequence is been selected and saved in the working directory as "Groupseq"
 Groupseq <-samplefastas [[9]]
 Groupseq
 
-#length of 9th fasta seq
+### length of 9th fasta seq
 seqinr::getLength(Groupseq)
 
-#length of GC propotion
+### length of GC propotion
 seqinr::GC(Groupseq)
 
 
@@ -319,12 +270,12 @@ seqinr::GC(Groupseq)
 
 ## Question 3 (You will be provided with R functions to create BLAST databases and perform blast searches. Use blast to identify what E. coli gene your sequence matches best. Show a table of the top 3 hits including percent identity, E-value and bit scores.You will be provided with R functions to create BLAST databases and perform blast searches. Use blast to identify what E. coli gene your sequence matches best. Show a table of the top 3 hits including percent identity, E-value and bit scores.)
 
-#make the sequences of commands avaialble in environment, which would allow the user to run blast
+### make the sequences of commands avaialble in environment, which would allow the user to run blast
 source("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part2_files/mutblast_functions.R")
 download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part2_files/mutblast_functions.R",destfile = "Markcodes.R")
 
 
-#select the myblastn_tab to run the blast.
+### select the myblastn_tab to run the blast.
 run args() to identify the arguments needed in the command.
 myseq=Groupseq whereas db="ecoligene.fa". db argument will be based on which data base the sequence analysis neede to be run.
 The results of the blast wil be saved as a vector named A
@@ -337,7 +288,7 @@ head(Groupseq_blast)
 
 ## Qustion 4  (You will be provided with a function that enables you to make a set number of point mutations to your sequence of interest. Run the function and write an R code to check the number of mismatches between the original and mutated sequence.)
 
-#Application of random mutations
+### Application of random mutations
 Run the args() funtionn to determine the arguments needed to be fulfilled in order to run the code.Run length(Groupseq) to check the length of the sequence. sequence will be Groupseq in this excercise. Complete the arguments for mutator function. Save the mutations as a vector named Groupseq_mut. Note that, myseq will be the selected sequence of interest. So in this case , it will be the Groupseq.nmut will be the number of random mutations which gonna be applied. This can be of any number less than the length of the sequence.
 
 length(Groupseq)
@@ -346,7 +297,7 @@ Groupseq_mut<-mutator(myseq = Groupseq,nmut =100)
 Groupseq_mut
 
 
-#Creating a pairwise alignment
+### Creating a pairwise alignment
 The mutated group sequence saved as Groupseq_mut needed to be converted to a DNA string where the data will be saved as a DNA string.Reason for doing this function is to efficent storage and ease of manipulation of long data sequence.c2s function will convert vector of chatacters to a single string
 PairwiseAlignment function is used to align the selected pairs of sequences. In this case, it will be the sequences which have been converted to DNA strings.(Groupseq_mut,groupseq_).pid function states the % similarities/identities of two sequences
 alignment will be the object which stores the results of pairwiseAlignmnet of Groupseq_mut, groupseq_
