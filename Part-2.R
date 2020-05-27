@@ -224,7 +224,7 @@ run_trials<- function(myseq,NMUTS,Ntrials){
 }
 #A vector will be declared which composed of number of random mutations which are neede to be applied to the gene of interst(Group_seq)
 #50,100,150,200,250,300 are used as number of  random mutations applied.
-NMUTS<-c(50,100,150,200,250,300).
+NMUTS<-c(50,100,150,200,250,300)
 
 #A 'for loop' is created to get the corresponding results related to 50,100,150,200,250,300
 #Initially a vector was created which named mutation_list. Index was declared as 1 since the output values should not be replacing the previous values in muatation_list
