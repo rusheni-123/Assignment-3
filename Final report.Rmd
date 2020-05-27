@@ -10,6 +10,7 @@ theme: cosmo
 
 # PART-1.
 
+
 ## Question1-(Read in the file, making the gene accession numbers the row names. Show a table of values for the first six genes).
 
 In order to address this question, initially download the given file "gene_expression.tsv” contains RNA-seq count data for two samples of interest.

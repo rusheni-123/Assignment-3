@@ -19,7 +19,7 @@ Then to make an object, the data set needed to be saved under a name in environm
 In here the name of the object will be given as "x"
 In oder to save the file as an object, run the command, x<-read.table("geneexpression.tsv", header = TRUE)
 then looked the first six genes using head(x) and str(x)
-Full code use to solve the problem is,
+Full code use to solve the problem is,HJOP
  
 ```{r,chunck1,echo=TRUE}
 download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part1_files/gene_expression.tsv",destfile = "geneexpression.tsv")
