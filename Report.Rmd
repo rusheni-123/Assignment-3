@@ -2,8 +2,8 @@
 title: "Assignment-3"
 author: "Mandhri Abeysooriya and Rusheni Senanayake"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 theme: cosmo
 ---
 
