@@ -57,9 +57,16 @@ nrow(filtered)
 
 ## Question-5 (Make a histogram plot of the mean values in png format and paste it into your report)
 
+<<<<<<< HEAD
 ### Using hist()comand draw the histogram
 #main() will be the title of the histogram,xlab() and breaks will be 5 frequencies for better graphical representation.
 hist(x$meanofsamples,main="distribution of mean",xlab="mean of samples",breaks=5 )
+=======
+# using hist()comand draw the histogram.
+
+
+hist(x$meanofsamples,main="distribution of mean",xlab="mean of samples",breaks=30)
+>>>>>>> bb06a17569b1d2b0e13ebab905d351d2a31ff939
 
 
 
