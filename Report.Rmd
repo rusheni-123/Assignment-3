@@ -112,10 +112,6 @@ To know the names of the columns in the cvs file, run the command, colnames(R).T
 
 ```{r,chunck6,echo=TRUE}
 args(read.csv)
-R<-read.csv(file = "growth_data.csv",header = TRUE,sep = ",")
-R
-colnames(R)
-args(read.csv)
 R<-read.csv(file = "https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part1_files/growth_data.csv",header = TRUE,sep = ",")
 R
 colnames(R)
@@ -518,7 +514,7 @@ A vector will be declared which composed of number of random mutations which are
 50,100,150,200,250,300 are used as number of  random mutations applied.
 
 ```{r,chunck35,echo=TRUE}
-NMUTS<-c(50,100,150,200,250,300).
+NMUTS<-c(50,100,150,200,250,300)
 ```
 
 'for loop' is created to get the corresponding results related to 50,100,150,200,250,300
