@@ -1,7 +1,8 @@
 ##Question 6 (Import this csv file into an R object. What are the column names?)
 
-#run args() to find the arguments needed to read a csv file.
-#In order to make an object, the data set needed to be saved under a name in environment. So for that, the name of the object will be given as "T"
+#Run args() to find the arguments needed to read a csv file.
+#In order to make an object, the data set needed to be saved under a name in environment. 
+#The name of the object will be given as "T"
 #In oder to save the file as an object, run the command. R<-read.csv(file=link of the raw data,header=True,sep=",")
 #Then run the command to depict the table in console by typing R 
 #In order to know the names of the columns in the cvs file, run the command colnames(R)
@@ -96,3 +97,6 @@ t.test(growth_Northeast,growth_Southwest)
 
 args(wilcox.test)
 wilcox.test(growth_Northeast,growth_Southwest)
+
+#A larer p value is obtained compared to t-test. Its assumed to be accurate as Wilcox.test relies onn different statstics.
+#Since Wilcox test is non parametric, the results tend to be less sensitive with more robust

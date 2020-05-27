@@ -33,15 +33,15 @@ makeblastdb("ecoligene.fa",dbtype = "nucl","-parse_seqids")
 
 ## Question-2 (Download the sample fasta sequences and read them in as above. For your allocated sequence, determine the length (in bp) and the proportion of GC bases)
 
-#ownload the sample fasta sequences and read them in as above. For your allocated sequence,
+#Download the sample fasta sequences and read them in as above. For your allocated sequence,
 #determine the length (in bp) and the proportion of GC bases.
 #downloading the file given in assigment pdf file which is of extension fa.
 #Since the file is of extension fa,it is clear that the file is already uncompressseed.
 
 download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part2_files/sample.fa",destfile = "sample.fa")
 
-#read.fasta command is given to read the downloaded fasta sequences.
-#downloaded fastas are saved in working directory as "samplefastas"
+#Read.fasta command is given to read the downloaded fasta sequences.
+#Downloaded fastas are saved in working directory as "samplefastas"
 samplefastas <- read.fasta("sample.fa")
 
 #one fasta sequence is been selected from the downloaded fasta sequence.
@@ -63,14 +63,18 @@ seqinr::GC(Groupseq)
 #Show a table of the top 3 hits including percent identity, E-value and bitscores.
 
 
-#make the sequences of commands avaialble in environment, which would allow the user to run blast
+#Make the sequences of commands avaialble in environment, which would allow the user to run blast
+
 download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part2_files/mutblast_functions.R",destfile
               = "mublast.R")
 source("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part2_files/mutblast_functions.R")
 
 
-#select the myblastn_tab to run the blast.
-#run args() to identify the arguments needed in the command.
+#Select the myblastn_tab to run the blast.
+#Run args() to identify the arguments needed in the command.
+#myseq=Groupseq whereas db="ecoligene.fa". 'db' will be based on which data base the sequence analysis needed to be run.
+#The results of the blast wil be saved as a vector named Groupseq_blast.
+
 args(myblastn_tab)
 
 #myseq=Groupseq whereas db="ecoligene.fa". db argument will be based on which data base the sequence analysis neede to be run.
@@ -83,9 +87,6 @@ head(Groupseq_blast)
 
 ## Question-4 (You will be provided with a function that enables you to make a set number of point mutations to your sequence of interest. Run the function and write an R code to check the number of mismatches between the original and mutated sequence.)
 
-#You will be provided with a function that enables you to make a set number of point mutations to your
-#sequence of interest. Run the function and write an R code to check the number of mismatches
-#between the original and mutated sequence.
 
 #Run the args() funtionn to determine the arguments needed to be fulfilled in order to run the code
 args(mutator)
@@ -210,8 +211,7 @@ mean(res)
 
 
 # Question 6(Provide a chart or table that shows how the increasing proportion of mutated bases reduces the ability for BLAST to match the gene of origin. Summarise the results in 1 to 2 sentences)
-#Provide a chart or table that shows how the increasing proportion of mutated bases reduces the ability
-#for BLAST to match the gene of origin. Summarise the results in 1 to 2 sentences.
+
 
 #In this question,the need to take the propotion of succesul blast hits needed to be taken as a vector in order to draw a graph. 
 #In order to do, a fuction is declared naming run-trials which composed of myseq,NMUTS,Ntrials in the signature of the function.In this function,the body will composed of
