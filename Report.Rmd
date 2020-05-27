@@ -89,11 +89,10 @@ Codes use to obtain histogram is,
 
 hist(x$meanofsamples)
 hist(x$meanofsample,main="distribution of mean",xlab="mean of samples",breaks=30)
-mean_xsample<-x$meanofsamples
 
-```
+
+```{r,chun5,echo=TRUE}
 hist(x$meanofsample,main="distribution of mean",xlab="meanofsamples",breaks=30)
->>>>>>> b284bad75376f3ec55ada2d8e276d391a141ab32
 ```
 
 

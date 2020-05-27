@@ -54,15 +54,9 @@ nrow(filtered)
 
 # using hist()comand draw the histogram.
 
-class(x)
-y<-as.factor(x)
-as.numeric(y)
-hist(mean_xsample,main="distribution of mean",xlab="mean of samples",breaks=30)
+hist(x$meanofsamples,main="distribution of mean",xlab="mean of samples",breaks=30)
 
 
-mean_xsample<-x$meanofsamples
-class(mean_xsample)
-str(x$meanofsamples)
-str(x)
+
 
 
