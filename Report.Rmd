@@ -91,7 +91,7 @@ hist(x$meanofsample,main="distribution of mean",xlab="mean of samples",breaks=30
 
 
 ```{r,chunck,echo=TRUE}
-hist(x$meanofsample,main="distribution of mean",xlab="mean of samples",breaks=30)
+hist(x$meanofsample,main="distribution of mean",xlab="meanofsamples",breaks=30)
 ```
 
 ## Question 6 -(Import this csv file into an R object. What are the column names?)
