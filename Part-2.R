@@ -80,15 +80,6 @@ Groupseq_blast
 str(Groupseq_blast)
 head(Groupseq_blast)
 
-#########only write this description of microbe in rdeport and then delete it from the script,###################
-#This microbe belongs to 
-#Description-heme export ABC transporter permease
-#Gene ID-b2200
-#Species-Escherichia coli str. K-12 substr. MG1655
-#Location-Chromosome:2296362-2297024
-#Gene trees-EGGT00170000111466 (Pan-taxonomic Compara)
-###############################################################################
-
 
 ## Question-4 (You will be provided with a function that enables you to make a set number of point mutations to your sequence of interest. Run the function and write an R code to check the number of mismatches between the original and mutated sequence.)
 
