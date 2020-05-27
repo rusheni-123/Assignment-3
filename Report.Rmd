@@ -79,7 +79,7 @@ nrow(filtered)
 
 There were 15032 genes with means less than 10.
 
-## Question 5 -(Make a histogram plot of the mean values in png format and paste it into your report.)
+## Question 5 -(Make a histogram plot of the mean values in png format and paste it into your report.
 
 
 Histogram were drwn using hist() function and for easy identification break it to 20 frequencies.histogram were drawn in mean of th samples in the x axis and frequancy was taken to y axis.To save the image in png format export the drawn graph and save the option under png format.
@@ -91,9 +91,7 @@ hist(x$meanofsamples)
 hist(x$meanofsample,main="distribution of mean",xlab="mean of samples",breaks=30)
 
 
-```{r,chun5,echo=TRUE}
-hist(x$meanofsample,main="distribution of mean",xlab="meanofsamples",breaks=30)
-```
+
 
 
 ## Question 6 -(Import this csv file into an R object. What are the column names?)
