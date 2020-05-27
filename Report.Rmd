@@ -1,58 +1,11 @@
 ---
+title: "Assignment-3"
+author: "Mandhri Abeysooriya and Rusheni Senanayake"
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
+theme: cosmo
 ---
-
-# Subject: SLE 712
-# Project title: Assigment 3 
-
-## Aim
-
-This project is a combination of Git hub and Rstudio where Git hub is the version control.
-
-aim of part-1:
-
- * develop skills in problem solving and R coding.
- 
-aim part-2:  
-
-* Download and unzip files.
-* Perform simple manipulations and analyses with sequence data.
-* Use a provided function to incorporate point mutations into a sequence.
-* Use provided functions to perform a BLAST search and interpret results.
-
-
-
-## Motivation
-
-To practice R studio and Git hub collaberation.
-
-## Contents
-
-gene_expression.tsv-data set for RNA sequence of two samples of interest
-README.md
-growth_data.csv-contains measurements for tree circumference growing at two sites, control site and treatment site which were planted 20 years ago
-E.Coli gene sequance database
-
-## Installation
-
-Rstudio version 1.2.1335 and R
-R version 3.6.3
-
-
-## Contribute
-
-Mandhri Abeysooriya and Rusheni Senanayake.
-
-## Credits
-Mandhri Abeysooriya, Rusheni Senanayake and DR. Mark ziemann.
-
-
-## License
-
-licensed under the [GNU General Public License v3.0](LICENCE)
-
 
 
 # PART-1.
@@ -63,10 +16,9 @@ In order to address this question, initially download the given file "gene_expre
 In oder to save the file as an object, run the command. x<-read.table("geneexpression.tsv", header = TRUE)
  then looked the first six genes using head(x) and str(x) by data comand.
  full code use to solve the problem is,
-```{r}
  
-download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part1_files/gene_expression.tsv",
-              destfile = "geneexpression.tsv")
+```{r,chunck1,echo=TRUE}
+download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part1_files/gene_expression.tsv",destfile = "geneexpression.tsv")
 
 x<-read.table("geneexpression.tsv", header = TRUE)
 head(x)
@@ -82,11 +34,10 @@ Define the column in the table using the symbol($).The reason for the use of row
 
 Code to use in solving problem is,
 
-```{r}
+```{r,chunck2,echo=TRUE}
 meanofsamples<-rowMeans(x[,c(2:3)])
 x$meanofsamples<-rowMeans(x[,c(2:3)])
 x[1:6,]
-
 ```
  
 ## Question -3 (List the 10 genes with the highest mean expression)
@@ -102,7 +53,7 @@ head(x_sorted,10)
  
 Following table show the first ten genes with highest genes.
  
-```{r}
+```{r,chunck3,echo=TRUE}
 x<-read.table("geneexpression.tsv", header = TRUE)
 head(x)
 str(x)
@@ -119,7 +70,7 @@ Codes use to solving problem is,
 filtered <- subset(x, meanofsamples > 10)
 nrow(filtered)
 
-```{r}
+```{r,chunck4,echo=TRUE}
 filtered <- subset(x, meanofsamples > 10)
 nrow(filtered)
 ```
@@ -133,11 +84,11 @@ Histogram were drwn using hist() function and for easy identification break it t
 Codes use to obtain histogram is,
 
 hist(x$meanofsamples)
-hist(x$Mean,breaks=20)
+hist(x$meanofsample,main="distribution of mean",xlab="mean of samples",breaks=30)
 
-```{r}
-hist(x$meanofsamples)
-hist(x$Mean,breaks=20)
+
+```{r,chunck,echo=TRUE}
+hist(x$meanofsample,main="distribution of mean",xlab="mean of samples",breaks=30)
 ```
 
 ## Question 6 -(Import this csv file into an R object. What are the column names?)
@@ -151,7 +102,7 @@ R<-read.csv(file = "growth_data.csv",header = TRUE,sep = ",")
 R
 colnames(R)
 
-```{r}
+```{r,chunck6,echo=TRUE}
 args(read.csv)
 R<-read.csv(file = "https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part1_files/growth_data.csv",header = TRUE,sep = ",")
 R
@@ -184,7 +135,7 @@ mean(Southwest$Circumf_2019_cm)
 sd(Southwest$Circumf_2019_cm)
 
 mean and SD values of sites are,
-```{r}
+```{r,chunck7,echo=TRUE}
 #Northeast
 Northeast <-(R[R$Site=="northeast",])
 Northeast
@@ -220,15 +171,15 @@ boxplot(Southwest$Circumf_2019_cm)
  
 Box plots for northeast,
 
-```{r}
+```{r,chunck8,echo=TRUE}
 boxplot(Northeast$Circumf_2004_cm)
 boxplot(Northeast$Circumf_2019_cm)
 ```
 
 Boxplotsfor southwest,
-```{r}
+```{r,chunck9,echo=TRUE}
 boxplot(Southwest$Circumf_2004_cm)
-boxplot(Southwest$Circumf_2019_cm
+boxplot(Southwest$Circumf_2019_cm)
 ```
 
 
@@ -237,20 +188,20 @@ boxplot(Southwest$Circumf_2019_cm
 ### Creating the mean growth of the two subsets(Northeast and Southwest)
 
 Run args() funtion to find the arguments needed for the rowMeans. Northeast$Circumf_2004.The reason for the use of rowMeans is that this fucntion will produce the mean in considering the every row where as selective columns are being sellected.column 4 and column 6 are specified as they hold data for a 10 years time period.
-```{r}
+
+```{r,chunck10,echo=TRUE}
 args(rowMeans)
 growth_Northeast <- rowMeans(Northeast[,c(4:6)])
 growth_Northeast
 growth_Southwest <- rowMeans(Southwest[,c(4:6)])
 growth_Southwest
-
 ```
 
 ### Insert the new column to both the table created under North_east and South_west
 
 syntax $ is used to add the new columns to each respective tables.Northeast$growth_Northeast will be adding the column known as growth_Northeast to Northeast table.Southwest$growth_Southwest will be adding the column known as growth_Southwest to Southwest table
-```{r}
 
+```{r,chunck11,echo=TRUE}
 Northeast$growth_Northeast <-rowMeans(Northeast[,c(4:6)])
 Northeast
 Southwest$growth_Southwest <-rowMeans(Southwest[,c(4:6)])
@@ -264,7 +215,7 @@ Southwest
 ### Application of t-test
 The syntax used below is for a two sample t-test. The reason for use of two sample t-test is that samples of interest are collected from two sides.
 
-```{r}
+```{r,chunck12,echo=TRUE}
 t.test(growth_Northeast,growth_Southwest)
 ```
 
@@ -276,14 +227,15 @@ The mean of northeast is 23.29467 where as mena of southwest is 32.38867. Accori
 wilcox.test(growth_Northeast,growth_Southwest)
 A larer p value is obtained compared to t-test. Its assumed to be accurate as Wilcox.test relies onn different statstics.
 Since Wilcox test is non parametric, the results tend to be less sensitive with more robust.
-```{r}
+
+```{r,chunck13,echo=TRUE}
 args(wilcox.test)
 wilcox.test(growth_Northeast,growth_Southwest)
 ```
 
 #Part 2
 
-```{r}
+```{r,chunck14,echo=TRUE}
 library("seqinr")
 library("R.utils")
 library("rBLAST")
@@ -294,11 +246,11 @@ library("Biostrings")
 
 ## Question 1-Download the whole set of E. coli gene DNA sequences and use gunzip to decompress. Use the makeblast() function to create a blast database. How many sequences are present in the E.coli set?
 
-#Download the whole set of E. coli gene DNA sequences and use gunzip to decompress
+### Download the whole set of E. coli gene DNA sequences and use gunzip to decompress
 The link with fa.gv is selected as in the 1st question, it is mentioned to decompress and fa.gv extensioned file are compressed files.
 so the link was selected and fa.gz extension was given to destile name.
 
-```{r}
+```{r,chunck15,echo=TRUE}
 
 download.file('ftp://ftp.ensemblgenomes.org/pub/bacteria/release-42/fasta/bacteria_0_collection/escherichia_coli_str_k_12_substr_mg1655/cds/Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.cds.all.fa.gz',
               destfile = "ecoligene.fa.gz")
@@ -307,42 +259,57 @@ download.file('ftp://ftp.ensemblgenomes.org/pub/bacteria/release-42/fasta/bacter
 ### uncompress the file
 R.utils package was used whereas gunzip command assit in unzipping the document. The name of the file was given with the extension.
 overwrite comman was selected as True to keep the original file in the system.
+
+```{r,chunck16,echo=TRUE}
 R.utils::gunzip("ecoligene.fa.gz",overwrite=T)
+```
 
 ### Making blast data base
-makeblastdb("ecoligene.fa",dbtype = "nucl","-parse_seqids")
 
+```{r,chunck17,echo=TRUE}
+makeblastdb("ecoligene.fa",dbtype = "nucl","-parse_seqids")
+```
 
 
 ## Question 2 (Download the sample fasta sequences and read them in as above. For your allocated sequence, determine the length (in bp) and the proportion of GC bases.)
 
-#Download the sample fasta sequences and read them in as above. For the allocated sequence and determine the length (in bp) and the proportion of GC bases.
+### Download the sample fasta sequences and read them in as above. For the allocated sequence and determine the length (in bp) and the proportion of GC bases.
 Downloading the file given in assigment pdf file which is of extension fa.
 Since the file is of extension fa,it is clear that the file is already uncompressseed.
+
+```{r,chunck18,echo=TRUE}
 download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part2_files/sample.fa",
               destfile = "sample.fa")
+```
 
-#read.fasta command is given to read the downloaded fasta sequences.
+### read.fasta command is given to read the downloaded fasta sequences.
+
 downloaded fastas are saved in working directory as "samplefastas"
+```{r,chunck19,echo=TRUE}
 samplefastas <- read.fasta("sample.fa")
+```
 
-#one fasta sequence is been selected from the downloaded fasta sequence.
+### one fasta sequence is been selected from the downloaded fasta sequence.
 9th sequence is been selected and saved in the working directory as "Groupseq"
+
+```{r,chunck20,echo=TRUE}
 Groupseq <-samplefastas [[9]]
 Groupseq
+```
 
 #length of 9th fasta seq
+```{r,chunck21,echo=TRUE}
 seqinr::getLength(Groupseq)
+```
 
 #length of GC propotion
+```{r,chunck22,echo=TRUE}
 seqinr::GC(Groupseq)
-
-
-
+```
 
 ## Question 3 (You will be provided with R functions to create BLAST databases and perform blast searches. Use blast to identify what E. coli gene your sequence matches best. Show a table of the top 3 hits including percent identity, E-value and bit scores.You will be provided with R functions to create BLAST databases and perform blast searches. Use blast to identify what E. coli gene your sequence matches best. Show a table of the top 3 hits including percent identity, E-value and bit scores.)
 
-#make the sequences of commands avaialble in environment, which would allow the user to run blast
+### make the sequences of commands avaialble in environment, which would allow the user to run blast
 source("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part2_files/mutblast_functions.R")
 download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part2_files/mutblast_functions.R",destfile = "Markcodes.R")
 
