@@ -54,6 +54,7 @@ nrow(filtered)
 
 # using hist()comand draw the histogram.
 
+
 hist(x$meanofsamples,main="distribution of mean",xlab="mean of samples",breaks=30)
 
 
