@@ -2,13 +2,14 @@
 title: "Assignment-3"
 author: "Mandhri Abeysooriya and Rusheni Senanayake"
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 theme: cosmo
 ---
 
 
 # PART-1.
+
 
 ## Question1-(Read in the file, making the gene accession numbers the row names. Show a table of values for the first six genes).
 
@@ -19,7 +20,7 @@ Then to make an object, the data set needed to be saved under a name in environm
 In here the name of the object will be given as "x"
 In oder to save the file as an object, run the command, x<-read.table("geneexpression.tsv", header = TRUE)
 then looked the first six genes using head(x) and str(x)
-Full code use to solve the problem is,HJOP
+Full code use to solve the problem is,
  
 ```{r,chunck1,echo=TRUE}
 download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part1_files/gene_expression.tsv",destfile = "geneexpression.tsv")
@@ -95,7 +96,9 @@ There were 15032 genes with means less than 10.
 
 Histogram were drawn using hist() function and for easy identification break it to 5 frequencies.histogram were drawn in mean of th samples in the x axis and frequancy was taken to y axis.To save the image in png format export the drawn graph and save the option under png format.
 
-
+```{r,chunck5,echo=TRUE}
+hist(x$meanofsample,main="distribution of mean",xlab="mean of samples",breaks=5)
+```
 
 
 
@@ -540,4 +543,3 @@ plot(NMUTS,mutation_list,xlab="Number of mutated sites",ylab="propotion of succc
 ```
 
 According to the graph, it can be concluded that the with increase of number of mutated bases in a sequence , the performance of the blast decreases gradually.Eventually,blast will no longer recognise the relationship between mutated sequence and the original sequence. In this graph,at 250 random mutations, the mutated sequence will be unidentical to the sequence of interest(original sequence).
-
