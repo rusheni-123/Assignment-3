@@ -117,13 +117,13 @@ pid(alignment)
 alignment
 
 
-#Comparing sequences to check the positions that have altered in the two sequences which is aligned and saved as a object called alignmnet.
+
 #when run the command comparestrings, ? will depicts the positions of the aligned sequence which have altered. 
 compareStrings(alignment)
 
 ### number of mismatch is calculated by nmismatch() fucntion.
 nmismatch(alignment)
-#according to the answer, it can be assumed that there are 75 differnt sites in the process of randoming 100 positions in the sequence.
+
 
 
 
@@ -240,6 +240,6 @@ for (Numberof_mut in NMUTS) {
 }
 mutation_list
 #Plotting the graph for NMUTS=X and mutation_list=y
+
 plot(NMUTS,mutation_list,xlab="Number of mutated sites",ylab="propotion of succcessful blasts",main="How elevation of mutated bases affect BLAST performance",type="l")
-#According to the graph, it can be concluded that the with increase of number of mutated bases in a sequence , the performance of the blast decreases gradually.Eventually,blast will no longer recognise the mutated sequence as a sequence which is mutated from original.
-#In this graph,at 250 random mutations, the mutated sequence will be unidentical to the sequence of interest.
+

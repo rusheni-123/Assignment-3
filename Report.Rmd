@@ -2,20 +2,24 @@
 title: "Assignment-3"
 author: "Mandhri Abeysooriya and Rusheni Senanayake"
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 theme: cosmo
 ---
 
 
 # PART-1.
 
-## Question-1(Read in the file, making the gene accession numbers the row names. Show a table of values for the first six genes).
+## Question1-(Read in the file, making the gene accession numbers the row names. Show a table of values for the first six genes).
 
-In order to address this question, initially download the given file "gene_expression.tsv” contains RNA-seq count data for two samples of interest.Therefore used the command download.file ("URL",destfile="name"). In this command, destfile="name" used to give the destination and name for the downloaded file.secondly,read the file using command read.table("name of the file").Then to make an object, the data set needed to be saved under a name in environment. So for that, the name of the object will be given as "x"
-In oder to save the file as an object, run the command. x<-read.table("geneexpression.tsv", header = TRUE)
- then looked the first six genes using head(x) and str(x) by data comand.
- full code use to solve the problem is,
+In order to address this question, initially download the given file "gene_expression.tsv” contains RNA-seq count data for two samples of interest.
+Therefore use the command download.file ("URL",destfile="name"). In this command, destfile="name" used to give the destination and name for the downloaded file.
+secondly,read the file using command, read.table("name of the file").
+Then to make an object, the data set needed to be saved under a name in environment. 
+In here the name of the object will be given as "x"
+In oder to save the file as an object, run the command, x<-read.table("geneexpression.tsv", header = TRUE)
+then looked the first six genes using head(x) and str(x)
+Full code use to solve the problem is,
  
 ```{r,chunck1,echo=TRUE}
 download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part1_files/gene_expression.tsv",destfile = "geneexpression.tsv")
@@ -26,11 +30,15 @@ str(x)
 read.table(file="geneexpression.tsv")
 ```
 
-## Question-2(Make a new column which is the mean of the other columns. Show a table of values for the first sixgenes.)
+## Question2-(Make a new column which is the mean of the other columns. Show a table of values for the first sixgenes.)
 
 
-The name of the new column saved as meanofth samples by using comand - meanofthesample <- and then to find the means of each row used the function rowmeans. here we need to get means for every raw of first six genes and only for 2nd and 3rd columns. therefor it specified as (x[,c(2:3)]). Therfore full code can be write as x$meanofsamples<-rowMeans(x[,c(2:3)]) and to chek the means for first six genes run the   x[1:6,].
-Define the column in the table using the symbol($).The reason for the use of rowMeans is that this fucntion will produce the mean in considering the every row where as columns are being sellected
+An object named "meanofsamples" is saved in the environment using meanofthesample <- and then to find the means of each row, rowmeans() function is used. 
+The reason for the use of rowMeans is that this fucntion will produce the mean in considering the every row where as columns are being selective.
+rowmeans(x[,c(2:3)]) command will give a output where mean of the rows will be calculated by considering columns 2 and 3. Comma used as soon as square brackets open depicts the fact that this function consider all the rows.
+Therfore full code can be write as x$meanofsamples<-rowMeans(x[,c(2:3)]) and to chek the means for first six genes run x[1:6,]
+Spefic columns on the table to run the command will be selected by using the syntax($).
+
 
 Code to use in solving problem is,
 
@@ -40,10 +48,11 @@ x$meanofsamples<-rowMeans(x[,c(2:3)])
 x[1:6,]
 ```
  
-## Question -3 (List the 10 genes with the highest mean expression)
+## Question 3-(List the 10 genes with the highest mean expression)
 
-
-To list the genes required to use order function. here in this question only required to list 10 genes with highest means. therefore need to mentioned the number of genes along with the sorting comand. Full comad which can be use for this is x_sorted <-x[order(-x$meanofsamples),] and chek the gens bu using head comand head(x_sorted,10).
+by sorting the data it is possible to list the genes with highest mean.
+sort() is used to arange the  data set in ascending or discending order.
+In order to select the 10 genes run the head command head(x_sorted,10).
  
 Codes use in solving problem is,
 
@@ -55,9 +64,11 @@ head(x_sorted,10)
 Following table show the first ten genes with highest genes.
  
 ```{r,chunck3,echo=TRUE}
-x<-read.table("geneexpression.tsv", header = TRUE)
-head(x)
-str(x)
+ranks <-order(x$meanofsamples,decreasing = T)
+ranks
+sort(x$meanofsamples,decreasing = T,)
+decended <-as.data.frame(x[ranks,])
+decended[1:10,]
 read.table(file="geneexpression.tsv")
 ```
  
@@ -82,33 +93,27 @@ There were 15032 genes with means less than 10.
 ## Question 5 -(Make a histogram plot of the mean values in png format and paste it into your report.)
 
 
-Histogram were drwn using hist() function and for easy identification break it to 20 frequencies.histogram were drawn in mean of th samples in the x axis and frequancy was taken to y axis.To save the image in png format export the drawn graph and save the option under png format.
+Histogram were drawn using hist() function and for easy identification break it to 30 frequencies.histogram were drawn in mean of th samples in the x axis and frequancy was taken to y axis.To save the image in png format export the drawn graph and save the option under png format.
 
-Codes use to obtain histogram is,
-
-
-hist(x$meanofsamples)
+```{r,chunck5,echo=TRUE}
 hist(x$meanofsample,main="distribution of mean",xlab="mean of samples",breaks=30)
-
-
-```{r,chun5,echo=TRUE}
-hist(x$meanofsample,main="distribution of mean",xlab="meanofsamples",breaks=30)
 ```
 
 
 ## Question 6 -(Import this csv file into an R object. What are the column names?)
 
 
-Initially run args() to find the arguments needed to read a csv file.Then,In order to make an object, the data set needed to be saved under a name in environment. So for that, the name of the object will be given as "R".In oder to save the file as an object, run the command. R<-read.csv(file="tree_circumference,csv",header=true,sep=",").Then run the command to depict the table in console by typing R .To know the names of the columns in the cvs file, run the command colnames(R).This step will provide you with column names as characters. Characters are vectors.
+Initially run args() to find the arguments needed to read a csv file.Then,In order to make an object, the data set needed to be saved under a name in environment.
+So for that, the name of the object will be given as "R".
+In oder to save the file as an object, run the command. R<-read.csv(file="tree_circumference,csv",header=true,sep=",").
+Then run the command to depict the table in console by typing R .
+To know the names of the columns in the cvs file, run the command, colnames(R).This step will provide with column names as characters.
+
+```{r,chunck6,echo=TRUE}
 args(read.csv)
-
-Following full codes use in solving the problem.
-
 R<-read.csv(file = "growth_data.csv",header = TRUE,sep = ",")
 R
 colnames(R)
-
-```{r,chunck6,echo=TRUE}
 args(read.csv)
 R<-read.csv(file = "https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part1_files/growth_data.csv",header = TRUE,sep = ",")
 R
@@ -116,13 +121,15 @@ colnames(R)
 ```
 
 
-
 ## Question 7-(Calculate the mean and standard deviation of tree circumference at the start and end of the study at both sites)
 
 
-To calculate the mean and sd of the both sites   function mean() and sd() used in the Numerics. It shuould be noted that the column needed to be specified from the Table(R).Then Make a subset for two sites(northeast and southwest). Name the subset as "Northeast" and "Southwest". To define the arguments you want to include in the subsets used following codes.As for an example;In Northeast <-(R[R$Site=="northeast",]) - the name of the subset is Northeast. R is the table which include the data of cvs file.  Define the column in the table using the symbol($).== syntax defines R$Site eqivalent to northeast.The "" syntax is used in northeast as northeast is a character. In, Northeast <-(R[R$Site=="northeast",]) the comma after "northeast" suggest that the function is run in all columns.
+To calculate the mean and sd of the both sites, mean() and sd() are used. It shuould be noted that the column needed to be specified from the Table(R).
+Then Make a subset for two sites(northeast and southwest). Name the subset as "Northeast" and "Southwest". 
+In Northeast <-(R[R$Site=="northeast",]) - the name of the subset is Northeast. R is the table which include the data of cvs file.  Define the column of interest in the table using the symbol($). == syntax defines R$Site eqivalent to "northeast".
+In Northeast <-(R[R$Site=="northeast",]) a comma after "northeast" suggest that the function is run in all columns.
 
-Following comands use to solve the problem.
+Following commands are use to solve the problem.
 
 #Northeast
 Northeast <-(R[R$Site=="northeast",])
@@ -162,7 +169,6 @@ sd(Southwest$Circumf_2019_cm)
 
 ## Question 8-(Make a box plot of tree circumference at the start and end of the study at both sites) 
 
-
 Box plots were drawn for both the sites using  the function boxplot() to obtain the box plot for specific column.since it is for both the sites, it is better to run the function by selecting Northeast and Southwest objects instead R.
 
 Following codes run to obtain the boxplots for sites.
@@ -189,15 +195,23 @@ Boxplotsfor southwest,
 boxplot(Southwest$Circumf_2004_cm)
 boxplot(Southwest$Circumf_2019_cm)
 ```
+### Making a one box plot 
+Combining all the 4 box plots to a single box plot diagram. Use function xlab() to give the title for x-axis, ylab() for title to y-axis,main() is for title of the plot,Names() function is used to give names to each sectors.
+
+```{r,chunck10,echo=TRUE}
+boxplot(main="circumferences of trees in two sites",Northeast$Circumf_2004_cm,Northeast$Circumf_2019_cm,Southwest$Circumf_2004_cm,Southwest$Circumf_2019_cm,names=c("N2004","N2019","S2004","S2019"),ylab="Circumference(cm)",xlab="Trees")
+
+```
 
 
 ## Question 9-(Calculate the mean growth over the past 10 years at each site.) 
 
 ### Creating the mean growth of the two subsets(Northeast and Southwest)
 
-Run args() funtion to find the arguments needed for the rowMeans. Northeast$Circumf_2004.The reason for the use of rowMeans is that this fucntion will produce the mean in considering the every row where as selective columns are being sellected.column 4 and column 6 are specified as they hold data for a 10 years time period.
+Run args() funtion to find the arguments needed for the rowMeans. The reason for the use of rowMeans is that this function will produce the mean in considering the every row where as columns will be selective.
+Column 4 to column 6 are selected as they hold data for a 10 years time period.
 
-```{r,chunck10,echo=TRUE}
+```{r,chunck11,echo=TRUE}
 args(rowMeans)
 growth_Northeast <- rowMeans(Northeast[,c(4:6)])
 growth_Northeast
@@ -205,11 +219,11 @@ growth_Southwest <- rowMeans(Southwest[,c(4:6)])
 growth_Southwest
 ```
 
-### Insert the new column to both the table created under North_east and South_west
+### Insert the new column to both the tables created under North_east and South_west
 
 syntax $ is used to add the new columns to each respective tables.Northeast$growth_Northeast will be adding the column known as growth_Northeast to Northeast table.Southwest$growth_Southwest will be adding the column known as growth_Southwest to Southwest table
 
-```{r,chunck11,echo=TRUE}
+```{r,chunck12,echo=TRUE}
 Northeast$growth_Northeast <-rowMeans(Northeast[,c(4:6)])
 Northeast
 Southwest$growth_Southwest <-rowMeans(Southwest[,c(4:6)])
@@ -218,12 +232,10 @@ Southwest
 
 ## Question 10-(Use the t.test and wilcox.test functions to estimate the p-value that the 10 year growth is different at the two sites.)
 
-### A new object named "growthin10" will be created which contains mean growth of last 10 years.rowmeans() function will be used which will be determing the means of every row.4 to 6 columns are been selected which contains 10 years' worth data.R is the data frame which is originally stored. Add the column growthin10 to the R 
-
 ### Application of t-test
 The syntax used below is for a two sample t-test. The reason for use of two sample t-test is that samples of interest are collected from two sides.
 
-```{r,chunck12,echo=TRUE}
+```{r,chunck13,echo=TRUE}
 t.test(growth_Northeast,growth_Southwest)
 ```
 
@@ -231,19 +243,24 @@ t.test(growth_Northeast,growth_Southwest)
 According to the p value which is 9.662e-06, it can be assume that the there is strong evidence aginst nulll hypothesis stating the fact that null hypothesis can  be rejected.
 The mean of northeast is 23.29467 where as mena of southwest is 32.38867. Accoridngly, the mean of southwest is greater than northeast
 
-### Analysing wilcox data
-wilcox.test(growth_Northeast,growth_Southwest)
-A larer p value is obtained compared to t-test. Its assumed to be accurate as Wilcox.test relies onn different statstics.
-Since Wilcox test is non parametric, the results tend to be less sensitive with more robust.
-
-```{r,chunck13,echo=TRUE}
+### Application of Wilcox test
+```{r,chunck14,echo=TRUE}
 args(wilcox.test)
 wilcox.test(growth_Northeast,growth_Southwest)
 ```
+### Analysing wilcox data
+```{r,chunck15,echo=TRUE}
+wilcox.test(growth_Northeast,growth_Southwest)
+```
+A larer p value is obtained compared to t-test. Its assumed to be accurate as Wilcox.test relies onn different statstics.
+Since Wilcox test is non parametric, the results tend to be less sensitive with more robust.
+
+
+
 
 # Part 2
 
-```{r,chunck14,echo=TRUE}
+```{r,chunck16,echo=TRUE}
 library("seqinr")
 library("R.utils")
 library("rBLAST")
@@ -256,10 +273,9 @@ library("Biostrings")
 
 
 ### Download the whole set of E. coli gene DNA sequences and use gunzip to decompress
-The link with fa.gv is selected as in the 1st question, it is mentioned to decompress and fa.gv extensioned file are compressed files.
-so the link was selected and fa.gz extension was given to destile name.
+The link with fa.gz extension is selected. fa.gz extension was given to destile name.
 
-```{r,chunck15,echo=TRUE}
+```{r,chunck17,echo=TRUE}
 
 download.file('ftp://ftp.ensemblgenomes.org/pub/bacteria/release-42/fasta/bacteria_0_collection/escherichia_coli_str_k_12_substr_mg1655/cds/Escherichia_coli_str_k_12_substr_mg1655.ASM584v2.cds.all.fa.gz',
               destfile = "ecoligene.fa.gz")
@@ -267,27 +283,27 @@ download.file('ftp://ftp.ensemblgenomes.org/pub/bacteria/release-42/fasta/bacter
 
 ### uncompress the file
 R.utils package was used whereas gunzip command assit in unzipping the document. The name of the file was given with the extension.
-overwrite comman was selected as True to keep the original file in the system.
+overwrite command was selected as True to keep the original file in the system.
 
-```{r,chunck16,echo=TRUE}
+```{r,chunck18,echo=TRUE}
 R.utils::gunzip("ecoligene.fa.gz",overwrite=T)
 ```
 
 ### Making blast data base
 
-```{r,chunck17,echo=TRUE}
+```{r,chunck19,echo=TRUE}
 makeblastdb("ecoligene.fa",dbtype = "nucl","-parse_seqids")
 ```
 
 
-## Question 2 (Download the sample fasta sequences and read them in as above. For your allocated sequence, determine the length (in bp) and the proportion of GC bases.)
+## Question 2-(Download the sample fasta sequences and read them in as above. For your allocated sequence, determine the length (in bp) and the proportion of GC bases).
 
 
 ### Download the sample fasta sequences and read them in as above. For the allocated sequence and determine the length (in bp) and the proportion of GC bases.
 Downloading the file given in assigment pdf file which is of extension fa.
-Since the file is of extension fa,it is clear that the file is already uncompressseed.
+Since the file is of extension fa,it is clear that the file is already decompressseed.
 
-```{r,chunck18,echo=TRUE}
+```{r,chunck20,echo=TRUE}
 download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part2_files/sample.fa",
               destfile = "sample.fa")
 ```
@@ -295,58 +311,68 @@ download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master
 ### read.fasta command is given to read the downloaded fasta sequences.
 
 downloaded fastas are saved in working directory as "samplefastas"
-```{r,chunck19,echo=TRUE}
+```{r,chunck21,echo=TRUE}
 samplefastas <- read.fasta("sample.fa")
 ```
 
 ### one fasta sequence is been selected from the downloaded fasta sequence.
 9th sequence is been selected and saved in the working directory as "Groupseq"
 
-```{r,chunck20,echo=TRUE}
+```{r,chunck22,echo=TRUE}
 Groupseq <-samplefastas [[9]]
 Groupseq
 ```
 
 #length of 9th fasta seq
-```{r,chunck21,echo=TRUE}
+```{r,chunck23,echo=TRUE}
 seqinr::getLength(Groupseq)
 ```
 
 #length of GC propotion
 
-```{r,chunck22,echo=TRUE}
+```{r,chunck24,echo=TRUE}
 seqinr::GC(Groupseq)
 ```
 
-## Question 3 (You will be provided with R functions to create BLAST databases and perform blast searches. Use blast to identify what E. coli gene your sequence matches best. Show a table of the top 3 hits including percent identity, E-value and bit scores.You will be provided with R functions to create BLAST databases and perform blast searches. Use blast to identify what E. coli gene your sequence matches best. Show a table of the top 3 hits including percent identity, E-value and bit scores.)
+## Question 3-(You will be provided with R functions to create BLAST databases and perform blast searches. Use blast to identify what E. coli gene your sequence matches best. Show a table of the top 3 hits including percent identity, E-value and bit scores.You will be provided with R functions to create BLAST databases and perform blast searches. Use blast to identify what E. coli gene your sequence matches best. Show a table of the top 3 hits including percent identity, E-value and bit scores).
 
 
-### make the sequences of commands avaialble in environment, which would allow the user to run blast
+### making the necessary functions avaialble in environment
 
-```{r,chunck23,echo=TRUE}
+```{r,chunck25,echo=TRUE}
 source("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part2_files/mutblast_functions.R")
-download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part2_files/mutblast_functions.R",destfile = "Markcodes.R")
-
-
-#select the myblastn_tab to run the blast.
+download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part2_files/mutblast_functions.R",destfile = "mublast.R")
+```
+select the myblastn_tab to run the blast.
 run args() to identify the arguments needed in the command.
-myseq=Groupseq whereas db="ecoligene.fa". db argument will be based on which data base the sequence analysis neede to be run.
-The results of the blast wil be saved as a vector named A
+myseq=Groupseq whereas db="ecoligene.fa". 'db' will be based on which data base the sequence analysis needed to be run.
+The results of the blast wil be saved as a vector named Groupseq_blast.
+
+```{r,chunck26,echo=TRUE}
 args(myblastn_tab)
 Groupseq_blast <-myblastn_tab(myseq=Groupseq,db="ecoligene.fa")
 str(Groupseq_blast)
 head(Groupseq_blast)
 ```
-### This microbe belongs to Description-heme export ABC transporter permease,Gene ID-b2200,Species-Escherichia coli str. K-12 substr. MG1655 Location-Chromosome:2296362-2297024 Gene trees-EGGT00170000111466 (Pan-taxonomic Compara).
+### Details of the microbe
 
+Name-heme export ABC transporter permease
+Species-Escherichia coli str. K-12 substr. MG1655 
+Location-Chromosome:2296362-2297024
+Gene trees-EGGT00170000111466
 
-## Qustion 4  (You will be provided with a function that enables you to make a set number of point mutations to your sequence of interest. Run the function and write an R code to check the number of mismatches between the original and mutated sequence.)
+## Qustion 4-(You will be provided with a function that enables you to make a set number of point mutations to your sequence of interest. Run the function and write an R code to check the number of mismatches between the original and mutated sequence.)
 
 
 ### Application of random mutations
-Run the args() funtionn to determine the arguments needed to be fulfilled in order to run the code.Run length(Groupseq) to check the length of the sequence. sequence will be Groupseq in this excercise. Complete the arguments for mutator function. Save the mutations as a vector named Groupseq_mut. Note that, myseq will be the selected sequence of interest. So in this case , it will be the Groupseq.nmut will be the number of random mutations which gonna be applied. This can be of any number less than the length of the sequence.
+Run the args() funtion to determine the arguments needed to be fulfilled in order to run the code.
+Run length(Groupseq) to check the length of the sequence.
+Sequence will be Groupseq in this question.
+Complete the arguments for mutator function.
+Save the mutations as a vector named Groupseq_mut. Note that, myseq will be the selected sequence of interest.
+This can be of any number less than the length of the sequence.
 
-```{r,chunck24,echo=TRUE}
+```{r,chunck27,echo=TRUE}
 length(Groupseq)
 args(mutator)
 Groupseq_mut<-mutator(myseq = Groupseq,nmut =100)
@@ -354,11 +380,14 @@ Groupseq_mut
 ```
 
 ### Creating a pairwise alignment
-The mutated group sequence saved as Groupseq_mut needed to be converted to a DNA string where the data will be saved as a DNA string.Reason for doing this function is to efficent storage and ease of manipulation of long data sequence.c2s function will convert vector of chatacters to a single string
-PairwiseAlignment function is used to align the selected pairs of sequences. In this case, it will be the sequences which have been converted to DNA strings.(Groupseq_mut,groupseq_).pid function states the % similarities/identities of two sequences
+Groupseq_mut needed to be converted to a DNA string for the efficent storage and ease of manipulation of long data sequence.
+c2s function will convert vector of chatacters to a single string.
+PairwiseAlignment function is used to align the selected pairs of sequences.
+In this case, it will be the sequences which have been converted to DNA strings.(Groupseq_mut,groupseq_).
+pid function states the % simillarities/identities of two sequences.
 alignment will be the object which stores the results of pairwiseAlignmnet of Groupseq_mut, groupseq_
 
-```{r,chunck25,echo=TRUE}
+```{r,chunck28,echo=TRUE}
 Groupseq_mut <-DNAString(c2s(Groupseq_mut))
 Groupseq_ <-DNAString(c2s(Groupseq))
 alignment <-Biostrings::pairwiseAlignment(Groupseq_mut,Groupseq_)
@@ -368,36 +397,38 @@ alignment
 
 ### comparing the aligned sequences
 
-Comparing sequences to check the positions that have altered in the two sequences which is aligned and saved as a object called alignmnet.
-when run the command comparestrings, ? will depicts the positions of the aligned sequence which have altered. 
+Command 'comparestrings' will depicts the  altered positions between aligned sequences.
+```{r,chunck29,echo=TRUE}
 compareStrings(alignment)
-
+```
 ### number of mismatch is calculated by nmismatch() fucntion.
 
+```{r,chunck30echo=TRUE}
 nmismatch(alignment)
-according to the answer, it can be assumed that there are 75 differnt sites in the process of randoming 100 positions in the sequence.
+```
+According to the answer, it can be assumed that there are 75 mismatches in the mutated sequence(Groupseq_mut) in compared to original sequence of interest(Groupseq).
 
 
-## Question5(Using the provided functions for mutating and BLASTing a sequence, determine the number and proportion of sites that need to be altered to prevent the BLAST search from matching the gene of origin. Because the mutation is random, you may need to run this test multiple times to get a reliable answer.)
+## Question5-(Using the provided functions for mutating and BLASTing a sequence, determine the number and proportion of sites that need to be altered to prevent the BLAST search from matching the gene of origin. Because the mutation is random, you may need to run this test multiple times to get a reliable answer.)
+
+#Using the provided functions for mutating and BLASTing a sequence, determine the number and
+#proportion of sites that need to be altered to prevent the BLAST search from matching the gene of
+#origin. Because the mutation is random, you may need to run this test multiple times to get a reliable
+#answer.
 
 
-Using the provided functions for mutating and BLASTing a sequence, determine the number and proportion of sites that need to be altered to prevent the BLAST search from matching the gene of
-origin. Because the mutation is random, you may need to run this test multiple times to get a reliable answer.
+## The basis of this question is to determinae the treshold of the blast so that the blast will be unable to recognise the gene from it's original sequence.
 
+#running blast index
+#creating a data base for the selected sequence 
+#Write.fasta function will be used to create a fasta sequece only for the sequence of interst.
+#In this question, Groupseq will be saved as a fa extension file and a data base of blast will be created based on the Groupseq.
+#dptype is the nucleotides.
 
-### The basis of this question is to determinae the treshold of the blast so that the blast will be unable to recognise the gene from it's original sequence.
-
-*running blast index
-*creating a data base for the selected sequence 
-*Write.fasta function will be used to create a fasta sequece only for the sequence of interst.
-*In this question, Groupseq will be saved as a fa extension file and a data base of blast will be created based on the Groupseq.
-*dptype is the nucleotides.
-
-```{r,chunck26,echo=TRUE}
+```{r,chunck31,echo=TRUE}
 write.fasta(Groupseq,names="Groupseq",file.out = "Groupseq.fa")
 makeblastdb(file="Groupseq.fa",dbtype = "nucl")
 ```
-
 
 #Groupseq-mut will be named as an object which will save the 10 ramdom mutations.  
 #data base of interest will be the data base created for Groupseq.
@@ -407,7 +438,7 @@ makeblastdb(file="Groupseq.fa",dbtype = "nucl")
 #A new function named "my_blast_test is been declared where the signature of the function composed of myseq which is the sequrence of interest(mutated sequence),and nmut for number of randomm mutations needed to be applied to the sequence of interest.
 #The body of the function will be composing of the ----------- which will be needed to excute the function.
 
-```{r,chunck27,echo=TRUE}
+```{r,chunck32,echo=TRUE}
 my_blast_test <- function(myseq,nmut) {
   
   Groupseq_mut <- mutator(myseq,nmut)
@@ -429,7 +460,7 @@ my_blast_test <- function(myseq,nmut) {
 #use the replicate to run the code many times.keep increasing nmuts
 #mean(res) will be giving the propotion of succesful blasts
 
-```{r,chunck28,echo=TRUE}
+```{r,chunck33,echo=TRUE}
 res <- replicate(n=10, my_blast_test(myseq=Groupseq, nmut=10))
 res
 mean(res)
@@ -465,91 +496,53 @@ res <- replicate(n=10, my_blast_test(myseq=Groupseq, nmut=300))
 res
 mean(res)
 ```
+#Number of sites that neede to be altered 250 bases.
 
-### Number of sites that neede to be altered 250 bases.
+## Question 6(Provide a chart or table that shows how the increasing proportion of mutated bases reduces the ability for BLAST to match the gene of origin. Summarise the results in 1 to 2 sentences).Provide a chart or table that shows how the increasing proportion of mutated bases reduces the ability for BLAST to match the gene of origin. Summarise the results in 1 to 2 sentences.
 
+In this question,the propotion of succesul blast hits needed to be taken as a vector in order to draw a graph. 
+In order to do, a fuction is declared naming run_trials which composed of myseq,NMUTS,Ntrials in the signature of the function.
+In this function,the body will composed of the object "res" (n,replicate and my_blast_test).
 
-## Question 6  (Using the provided functions for mutating and BLASTing a sequence, determine the number and proportion of sites that need to be altered to prevent the BLAST search from matching the gene of origin. Because the mutation is random, you may need to run this test multiple times to get a reliable answer.)
-
-
-The basis of this question is to determinae the treshold of the blast so that the blast will be unable to recognise the gene from it's original sequence.
-
-### running blast index
-
-creating a data base for the selected sequence.Write.fasta function will be used to create a fasta sequece only for the sequence of interst.In this question, Groupseq will be saved as a fa extension file and a data base of blast will be created based on the Groupseq.dptype is the nucleotides.
-
-```{r,chunck29,echo=TRUE}
-write.fasta(Groupseq,names="Groupseq",file.out = "Groupseq.fa")
-makeblastdb(file="Groupseq.fa",dbtype = "nucl")
+```{r,chunck34,echo=TRUE}
+run_trials<- function(myseq,NMUTS,Ntrials){
+  replicate_response <-replicate(n=Ntrials,my_blast_test(myseq = myseq,nmut = NMUTS))
+  res <-mean(replicate_response)
+  return (res)
+}
 ```
 
-### Testing randomly input mutations in order to determine Null
 
-Groupseq-mut will be named as an object which will save the 10 ramdom mutations.  
-data base of interest will be the data base created for Groupseq.
-myblastn_tab will be the function to run the blast
-test with 10 random mutations
+A vector will be declared which composed of number of random mutations which are needed to be applied to the gene of interest(Group_seq)
+50,100,150,200,250,300 are used as number of  random mutations applied.
 
-```{r,chunck30,echo=TRUE}
-Groupseq_mut <- mutator(myseq=Groupseq,10)
-test <- myblastn_tab(myseq = Groupseq_mut, db = "Groupseq.fa")
-test
-length(Groupseq_mut)
-
-test with 20 random mutations
-Groupseq_mut <- mutator(myseq=Groupseq,20)
-test2 <- myblastn_tab(myseq = Groupseq_mut, db = "Groupseq.fa")
-test2
-
-test with 30 random mutations
-Groupseq_mut <- mutator(myseq=Groupseq,30)
-test3 <- myblastn_tab(myseq = Groupseq_mut, db = "Groupseq.fa")
-test3
-
-test with 40 random mutations
-Groupseq_mut <- mutator(myseq=Groupseq,40)
-test <- myblastn_tab(myseq = Groupseq_mut, db = "Groupseq.fa")
-test
-
-Test with 50 mutations
-length(Groupseq_mut)
-Groupseq_mut <- mutator(myseq=Groupseq,50)
-test<- myblastn_tab(myseq = Groupseq_mut, db = "Groupseq.fa")
-test
-
-test with 60 random mutations
-Groupseq_mut <- mutator(myseq=Groupseq,60)
-test <- myblastn_tab(myseq = Groupseq_mut, db = "Groupseq.fa")
-test
-
-test with 70 random mutations
-Groupseq_mut <- mutator(myseq=Groupseq,70)
-test <- myblastn_tab(myseq = Groupseq_mut, db = "Groupseq.fa")
-test
-
-test with 80 random mutations
-Groupseq_mut <- mutator(myseq=Groupseq,80)
-test <- myblastn_tab(myseq = Groupseq_mut, db = "Groupseq.fa")
-test
-
-test with 90 random mutations
-Groupseq_mut <- mutator(myseq=Groupseq,90)
-test <- myblastn_tab(myseq = Groupseq_mut, db = "Groupseq.fa")
-test
-
-Test with 100 mismathes
-Groupseq_mut <- mutator(myseq=Groupseq_mut,100)
-test<- myblastn_tab(myseq = Groupseq_mut, db = "Groupseq.fa")
-test
-
-test with 150 random mutations
-Groupseq_mut <- mutator(myseq=Groupseq_mut,150)
-test<- myblastn_tab(myseq = Groupseq_mut, db = "Groupseq.fa")
-test
-
-test with 200 random mutations
-Groupseq_mut <- mutator(myseq=Groupseq_mut,200)
-test<- myblastn_tab(myseq = Groupseq_mut, db = "Groupseq.fa")
-test
+```{r,chunck35,echo=TRUE}
+NMUTS<-c(50,100,150,200,250,300).
 ```
+
+'for loop' is created to get the corresponding results related to 50,100,150,200,250,300
+In order to do so, a vector was created which named mutation_list. Index was declared as 1 since the output values should not be replacing the previous values in muatation_list
+
+An object named 'Runtrial_results was created which compose of run_trial function's results.
+
+```{r,chunck36,echo=TRUE}
+mutation_list<- c()
+i=1
+for (Numberof_mut in NMUTS) {
+  print(Numberof_mut)
+  Runtrial_results<-run_trials(myseq = Groupseq,NMUTS = Numberof_mut,Ntrials = 10)
+  print(v)
+  mutation_list[i]<-Runtrial_results
+  i=i+1
+}
+
+mutation_list
+```
+### Plotting the graph for NMUTS=X and mutation_list=y
+```{r,chunck37,echo=TRUE}
+plot(NMUTS,mutation_list,xlab="Number of mutated sites",ylab="propotion of succcessful blasts",main="How elevation of mutated bases affect BLAST performance",type="l")
+
+```
+
+According to the graph, it can be concluded that the with increase of number of mutated bases in a sequence , the performance of the blast decreases gradually.Eventually,blast will no longer recognise the relationship between mutated sequence and the original sequence. In this graph,at 250 random mutations, the mutated sequence will be unidentical to the sequence of interest(original sequence).
 
