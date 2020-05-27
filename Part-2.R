@@ -234,7 +234,7 @@ i=1
 for (Numberof_mut in NMUTS) {
   print(Numberof_mut)
   Runtrial_results<-run_trials(myseq = Groupseq,NMUTS = Numberof_mut,Ntrials = 10)
-  print(v)
+  print(Runtrial_results)
   mutation_list[i]<-Runtrial_results
   i=i+1
 }

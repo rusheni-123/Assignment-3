@@ -542,4 +542,3 @@ plot(NMUTS,mutation_list,xlab="Number of mutated sites",ylab="propotion of succc
 ```
 
 According to the graph, it can be concluded that the with increase of number of mutated bases in a sequence , the performance of the blast decreases gradually.Eventually,blast will no longer recognise the relationship between mutated sequence and the original sequence. In this graph,at 250 random mutations, the mutated sequence will be unidentical to the sequence of interest(original sequence).
-
