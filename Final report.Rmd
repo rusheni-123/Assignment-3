@@ -14,13 +14,13 @@ output:
 
 ## Question1-(Read in the file, making the gene accession numbers the row names. Show a table of values for the first six genes).
 
-In order to address this question, initially download the given file "gene_expression.tsv” contains RNA-seq count data for two samples of interest.
-Therefore use the command download.file ("URL",destfile="name"). In this command, destfile="name" used to give the destination and name for the downloaded file.
-secondly,read the file using command, read.table("name of the file").
+In order to address this question, initially download the given file "gene_expression.tsv” whichcontains RNA-seq count data for two samples of interest.
+Use the command, download.file ("URL",destfile="name") to download "gene expression.tsv".destfile="name" command will be used to give the destination name for the downloaded file.
+secondly,read the file using command, read.table("name of the file")
 Then to make an object, the data set needed to be saved under a name in environment. 
 In here the name of the object will be given as "x"
-In oder to save the file as an object, run the command, x<-read.table("geneexpression.tsv", header = TRUE)
-then looked the first six genes using head(x) and str(x)
+In oder to save the file as an object, run x<-read.table("geneexpression.tsv", header = TRUE) command.
+Then look the first six genes using head(x) 
 Full code use to solve the problem is,
  
 ```{r,chunck1,echo=TRUE}
@@ -28,8 +28,6 @@ download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master
 
 x<-read.table("geneexpression.tsv", header = TRUE)
 head(x)
-str(x)
-read.table(file="geneexpression.tsv")
 ```
 
 ## Question2-(Make a new column which is the mean of the other columns. Show a table of values for the first sixgenes.)
@@ -37,9 +35,10 @@ read.table(file="geneexpression.tsv")
 
 An object named "meanofsamples" is saved in the environment using meanofthesample <- and then to find the means of each row, rowmeans() function is used. 
 The reason for the use of rowMeans is that this fucntion will produce the mean in considering the every row where as columns are being selective.
-rowmeans(x[,c(2:3)]) command will give a output where mean of the rows will be calculated by considering columns 2 and 3. Comma used as soon as square brackets open depicts the fact that this function consider all the rows.
-Therfore full code can be write as x$meanofsamples<-rowMeans(x[,c(2:3)]) and to chek the means for first six genes run x[1:6,]
-Spefic columns on the table to run the command will be selected by using the syntax($).
+rowmeans(x[,c(2:3)]) command will give an output where mean of the rows will be calculated by considering columns 2 and 3. 
+Comma used as soon as square brackets open depicts the fact that this function consider all the rows.
+Therfore full code can be written as x$meanofsamples<-rowMeans(x[,c(2:3)]) and to check the means for first six genes run x[1:6,]
+Spefic columns on the table will be selected by using the syntax($) to run the command. 
 
 
 Code to use in solving problem is,
@@ -52,16 +51,13 @@ x[1:6,]
  
 ## Question 3-(List the 10 genes with the highest mean expression)
 
-by sorting the data it is possible to list the genes with highest mean.
-sort() is used to arange the  data set in ascending or discending order.
-In order to select the 10 genes run the head command head(x_sorted,10).
- 
-Codes use in solving problem is,
-
-x[order(-x$meanofsamples),
-x_sorted <-x[order(-x$meanofsamples),]
-head(x_sorted,10)
- 
+Values in the column (meanofsamples) will be arranged in descending order and named as "ranks". decreasing argument will be TRUE.
+This will be giving the results of the highest values to the lowest values of the column(meanofsamples) in reference to "GeneID"
+Order() will results with ranking positions for each element.
+Sort() will be sorting out the results in reference to "meanofsample" column. decreasing will be true to obtain highest value in numeric.
+Since  the object "ranks" composed of interger data type, as,data frame(x[ranks,]) will be used to convert the integer data type to a data frame.
+An object named "decended" will be created and first 10 rows of all the columns will be executed with the command, decended[1:10,]
+This will be providing the highest mean values of the samples.
  
 Following table show the first ten genes with highest genes.
  
@@ -71,19 +67,15 @@ ranks
 sort(x$meanofsamples,decreasing = T,)
 decended <-as.data.frame(x[ranks,])
 decended[1:10,]
-read.table(file="geneexpression.tsv")
 ```
  
 
 ## Question 4-(Determine the number of genes with a mean <10)
 
 
-To determine the nuber of genes which has mean value less than 10,subsetting has done.filter function  function is selects or filters the rows of the data table that meet certain criteria creating a new data subset and subsetting was done using code filtered <- subset(x, meanofsamples > 10). Then to get the number used the function,nrow(filtered).nrow returns the number of rows that are present in a data frame or matrix. 
+To determine the nuber of genes which has mean value less than 10,subsetting has done. filtered() is selects or filters the rows of the data table that meet certain criteria creating a new data subset and subsetting was done using code filtered <- subset(x, meanofsamples > 10). Then to get the number used the function,nrow(filtered).nrow returns the number of rows that are present in a data frame or matrix. 
 
 Codes use to solving problem is,
-
-filtered <- subset(x, meanofsamples > 10)
-nrow(filtered)
 
 ```{r,chunck4,echo=TRUE}
 filtered <- subset(x, meanofsamples > 10)
@@ -106,7 +98,8 @@ hist(x$meanofsample,main="distribution of mean",xlab="mean of samples",breaks=5)
 ## Question 6 -(Import this csv file into an R object. What are the column names?)
 
 
-Initially run args() to find the arguments needed to read a csv file.Then,In order to make an object, the data set needed to be saved under a name in environment.
+Initially run args() to find the arguments needed to read a csv file.
+Then,In order to make an object, the data set needed to be saved under a name in environment.
 So for that, the name of the object will be given as "R".
 In oder to save the file as an object, run the command. R<-read.csv(file="tree_circumference,csv",header=true,sep=",").
 Then run the command to depict the table in console by typing R .
@@ -125,27 +118,8 @@ colnames(R)
 
 To calculate the mean and sd of the both sites, mean() and sd() are used. It shuould be noted that the column needed to be specified from the Table(R).
 Then Make a subset for two sites(northeast and southwest). Name the subset as "Northeast" and "Southwest". 
-In Northeast <-(R[R$Site=="northeast",]) - the name of the subset is Northeast. R is the table which include the data of cvs file.  Define the column of interest in the table using the symbol($). == syntax defines R$Site eqivalent to "northeast".
+In Northeast <-(R[R$Site=="northeast",]) - the name of the subset is Northeast. R is the table which include the data of cvs file.  Define the column of Interest in the table using the symbol($). ""syntax defines R$Site eqivalent to "northeast".
 In Northeast <-(R[R$Site=="northeast",]) a comma after "northeast" suggest that the function is run in all columns.
-
-Following commands are use to solve the problem.
-
-#Northeast
-Northeast <-(R[R$Site=="northeast",])
-Northeast
-mean(Northeast$Circumf_2004_cm)
-sd(Northeast$Circumf_2004_cm)
-mean(Northeast$Circumf_2019_cm)
-sd(Northeast$Circumf_2019_cm)
-
-
-#Southwest
-Southwest <-(R[R$Site=="southwest",])
-Southwest
-mean(Southwest$Circumf_2004_cm)
-sd(Southwest$Circumf_2004_cm)
-mean(Southwest$Circumf_2019_cm)
-sd(Southwest$Circumf_2019_cm)
 
 mean and SD values of sites are,
 ```{r,chunck7,echo=TRUE}
@@ -168,20 +142,10 @@ sd(Southwest$Circumf_2019_cm)
 
 ## Question 8-(Make a box plot of tree circumference at the start and end of the study at both sites) 
 
-Box plots were drawn for both the sites using  the function boxplot() to obtain the box plot for specific column.since it is for both the sites, it is better to run the function by selecting Northeast and Southwest objects instead R.
-
-Following codes run to obtain the boxplots for sites.
- 
-for notheast,
-boxplot(Northeast$Circumf_2004_cm)
-boxplot(Northeast$Circumf_2019_cm)
+Box plots were drawn for both the sites using  the function boxplot() to obtain the box plot for specific column.
+Since it is for both the sites, it is better to run the function by selecting Northeast and Southwest objects instead R.
 
 
-For southwest,
-boxplot(Southwest$Circumf_2004_cm)
-boxplot(Southwest$Circumf_2019_cm)
-
- 
 Box plots for northeast,
 
 ```{r,chunck8,echo=TRUE}
@@ -195,7 +159,10 @@ boxplot(Southwest$Circumf_2004_cm)
 boxplot(Southwest$Circumf_2019_cm)
 ```
 ### Making a one box plot 
+
 Combining all the 4 box plots to a single box plot diagram. Use function xlab() to give the title for x-axis, ylab() for title to y-axis,main() is for title of the plot,Names() function is used to give names to each sectors.
+boxplot(main="circumferences of trees in two sites",Northeast$Circumf_2004_cm,Northeast$Circumf_2019_cm,Southwest$Circumf_2004_cm,Southwest$Circumf_2019_cm,names=c("N2004","N2019","S2004","S2019"),ylab="Circumference(cm)",xlab="Trees")
+
 
 ```{r,chunck10,echo=TRUE}
 boxplot(main="circumferences of trees in two sites",Northeast$Circumf_2004_cm,Northeast$Circumf_2019_cm,Southwest$Circumf_2004_cm,Southwest$Circumf_2019_cm,names=c("N2004","N2019","S2004","S2019"),ylab="Circumference(cm)",xlab="Trees")
@@ -220,7 +187,9 @@ growth_Southwest
 
 ### Insert the new column to both the tables created under North_east and South_west
 
-syntax $ is used to add the new columns to each respective tables.Northeast$growth_Northeast will be adding the column known as growth_Northeast to Northeast table.Southwest$growth_Southwest will be adding the column known as growth_Southwest to Southwest table
+Run args() funtion to find the arguments needed for the rowMeans. Northeast$Circumf_2004
+The reason for the use of rowMeans is that this fucntion will produce the mean in considering the every row where as selective columns are being sellected.
+column 4 and column 6 are specified as they hold data for a 10 years time period.
 
 ```{r,chunck12,echo=TRUE}
 Northeast$growth_Northeast <-rowMeans(Northeast[,c(4:6)])
@@ -230,6 +199,7 @@ Southwest
 ```
 
 ## Question 10-(Use the t.test and wilcox.test functions to estimate the p-value that the 10 year growth is different at the two sites.)
+Select the data frames which compose of mean of growth of two sites:growth_Northeast and growth_Southwest
 
 ### Application of t-test
 The syntax used below is for a two sample t-test. The reason for use of two sample t-test is that samples of interest are collected from two sides.
@@ -272,7 +242,10 @@ library("Biostrings")
 
 
 ### Download the whole set of E. coli gene DNA sequences and use gunzip to decompress
-The link with fa.gz extension is selected. fa.gz extension was given to destile name.
+
+Download the whole set of E. coli gene DNA sequences and use gunzip to decompress)
+The link with fa.gv is selected as in the 1st question, it is mentioned to decompress and fa.gv extensioned file are compressed files.
+So the link was selected and fa.gz extension was given to destile name.
 
 ```{r,chunck17,echo=TRUE}
 
@@ -299,8 +272,10 @@ makeblastdb("ecoligene.fa",dbtype = "nucl","-parse_seqids")
 
 
 ### Download the sample fasta sequences and read them in as above. For the allocated sequence and determine the length (in bp) and the proportion of GC bases.
+Download the sample fasta sequences and read them in as above. For your allocated sequence,
+Determine the length (in bp) and the proportion of GC bases.
 Downloading the file given in assigment pdf file which is of extension fa.
-Since the file is of extension fa,it is clear that the file is already decompressseed.
+Since the file is of extension fa,it is clear that the file is already uncompressseed
 
 ```{r,chunck20,echo=TRUE}
 download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part2_files/sample.fa",
@@ -309,7 +284,7 @@ download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master
 
 ### read.fasta command is given to read the downloaded fasta sequences.
 
-downloaded fastas are saved in working directory as "samplefastas"
+Downloaded fastas are saved in working directory as "samplefastas"
 ```{r,chunck21,echo=TRUE}
 samplefastas <- read.fasta("sample.fa")
 ```
@@ -337,6 +312,8 @@ seqinr::GC(Groupseq)
 
 
 ### making the necessary functions avaialble in environment
+
+Make the sequences of commands avaialble in environment, which would allow the user to run blast
 
 ```{r,chunck25,echo=TRUE}
 source("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part2_files/mutblast_functions.R")
@@ -410,32 +387,31 @@ According to the answer, it can be assumed that there are 75 mismatches in the m
 
 ## Question5-(Using the provided functions for mutating and BLASTing a sequence, determine the number and proportion of sites that need to be altered to prevent the BLAST search from matching the gene of origin. Because the mutation is random, you may need to run this test multiple times to get a reliable answer.)
 
-#Using the provided functions for mutating and BLASTing a sequence, determine the number and
-#proportion of sites that need to be altered to prevent the BLAST search from matching the gene of
-#origin. Because the mutation is random, you may need to run this test multiple times to get a reliable
-#answer.
+Using the provided functions for mutating and BLASTing a sequence, determine the number and
+Proportion of sites that need to be altered to prevent the BLAST search from matching the gene of
+Origin. Because the mutation is random, you may need to run this test multiple times to get a reliable answer.
 
 
 ## The basis of this question is to determinae the treshold of the blast so that the blast will be unable to recognise the gene from it's original sequence.
 
-#running blast index
-#creating a data base for the selected sequence 
-#Write.fasta function will be used to create a fasta sequece only for the sequence of interst.
-#In this question, Groupseq will be saved as a fa extension file and a data base of blast will be created based on the Groupseq.
-#dptype is the nucleotides.
+Running blast index
+Creating a data base for the selected sequence 
+Write.fasta function will be used to create a fasta sequece only for the sequence of interst.
+In this question, Groupseq will be saved as a fa extension file and a data base of blast will be created based on the Groupseq.
+dbtype is the nucleotides.
 
 ```{r,chunck31,echo=TRUE}
 write.fasta(Groupseq,names="Groupseq",file.out = "Groupseq.fa")
 makeblastdb(file="Groupseq.fa",dbtype = "nucl")
 ```
 
-#Groupseq-mut will be named as an object which will save the 10 ramdom mutations.  
-#data base of interest will be the data base created for Groupseq.
-#myblastn_tab will be the function to run the blast.Initially test with 10 random mutations and increase the mutations gradually.
-#Since the final answer needed to be the maximum number of mutations which will not recognise the mutated sequence with original sequence, the function is been applied. 
-#In this function, output will be given as 0 for null(mutated sequence is no longer recognised as a sequence related to originl sequence due to number of mutations  applied) and 1 when the mutated sequence is recognised as a mutated version of original sequence.
-#A new function named "my_blast_test is been declared where the signature of the function composed of myseq which is the sequrence of interest(mutated sequence),and nmut for number of randomm mutations needed to be applied to the sequence of interest.
-#The body of the function will be composing of the ----------- which will be needed to excute the function.
+Groupseq-mut will be named as an object which will save the 10 ramdom mutations.  
+data base of interest will be the data base created for Groupseq.
+myblastn_tab will be the function to run the blast.Initially test with 10 random mutations and increase the mutations gradually.
+Since the final answer needed to be the maximum number of mutations which will not recognise the mutated sequence with original sequence, the function is been applied. 
+In this function, output will be given as 0 for null(mutated sequence is no longer recognised as a sequence related to originl sequence due to number of mutations  applied) and 1 when the mutated sequence is recognised as a mutated version of original sequence.
+A new function named "my_blast_test is been declared where the signature of the function composed of myseq which is the sequrence of interest(mutated sequence),and nmut for number of randomm mutations needed to be applied to the sequence of interest.
+The body of the function will be composing of the ----------- which will be needed to excute the function.
 
 ```{r,chunck32,echo=TRUE}
 my_blast_test <- function(myseq,nmut) {
@@ -455,9 +431,9 @@ my_blast_test <- function(myseq,nmut) {
 }
 ```
 
-#Application of the function(my_blast_test)
-#use the replicate to run the code many times.keep increasing nmuts
-#mean(res) will be giving the propotion of succesful blasts
+Application of the function(my_blast_test)
+use the replicate to run the code many times.keep increasing nmuts
+mean(res) will be giving the propotion of succesful blasts
 
 ```{r,chunck33,echo=TRUE}
 res <- replicate(n=10, my_blast_test(myseq=Groupseq, nmut=10))
