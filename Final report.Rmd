@@ -1,10 +1,11 @@
 ---
 title: "Assignment-3"
 author: "Mandhri Abeysooriya and Rusheni Senanayake"
+theme: cosmo
 output:
+  word_document: default
   pdf_document: default
   html_document: default
-theme: cosmo
 ---
 
 
