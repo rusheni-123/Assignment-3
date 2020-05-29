@@ -12,14 +12,7 @@ theme: cosmo
 
 ## Question1-(Read in the file, making the gene accession numbers the row names. Show a table of values for the first six genes).
 
-In order to address this question, initially download the given file "gene_expression.tsv” contains RNA-seq count data for two samples of interest.
-Therefore use the command download.file ("URL",destfile="name"). In this command, destfile="name" used to give the destination and name for the downloaded file.
-secondly,read the file using command, read.table("name of the file").
-Then to make an object, the data set needed to be saved under a name in environment. 
-In here the name of the object will be given as "x"
-In oder to save the file as an object, run the command, x<-read.table("geneexpression.tsv", header = TRUE)
-then looked the first six genes using head(x) and str(x)
-Full code use to solve the problem is,HJOP
+In order to address this question, initially download the given file “gene_expression.tsv” which contains RNA-seq count data for two samples of interest. Use the command, download.file (“URL”,destfile=“name”) to download “gene expression.tsv”.destfile=“name” command will be used to give the destination name for the downloaded file. secondly, read the file using command, read.table(“name of the file”) Then to make an object, the data set needed to be saved under a name in environment. In here the name of the object will be given as “x”. In order to save the file as an object, run x<-read.table(“geneexpression.tsv”, header = TRUE) command. Then look the first six genes using head(x). Full code use to solve the problem is,
  
 ```{r,chunck1,echo=TRUE}
 download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master/bioinfo_asst3_part1_files/gene_expression.tsv",destfile = "geneexpression.tsv")
@@ -34,10 +27,10 @@ read.table(file="geneexpression.tsv")
 
 
 An object named "meanofsamples" is saved in the environment using meanofthesample <- and then to find the means of each row, rowmeans() function is used. 
-The reason for the use of rowMeans is that this fucntion will produce the mean in considering the every row where as columns are being selective.
-rowmeans(x[,c(2:3)]) command will give a output where mean of the rows will be calculated by considering columns 2 and 3. Comma used as soon as square brackets open depicts the fact that this function consider all the rows.
+The reason for the use of rowMeans is that this function will produce the mean in considering the every row whereas columns are being selective.
+rowmeans(x[,c(2:3)]) command will give a output where mean of the rows will be calculated by considering columns 2 and 3. Comma used as soon as square bracket open, depicts the fact that this function consider all the rows.
 Therfore full code can be write as x$meanofsamples<-rowMeans(x[,c(2:3)]) and to chek the means for first six genes run x[1:6,]
-Spefic columns on the table to run the command will be selected by using the syntax($).
+Specific columns on the table to run the command will be selected by using the syntax($).
 
 
 Code to use in solving problem is,
@@ -50,18 +43,15 @@ x[1:6,]
  
 ## Question 3-(List the 10 genes with the highest mean expression)
 
-by sorting the data it is possible to list the genes with highest mean.
-sort() is used to arange the  data set in ascending or discending order.
-In order to select the 10 genes run the head command head(x_sorted,10).
- 
+Values in the column (meanofsamples) will be arranged in descending order and named as “ranks”. decreasing argument will be TRUE. 
+This will be giving the results of the highest values to the lowest values of the column(meanofsamples) in reference to “GeneID”. 
+order() will be ranking positions for each element.
+sort() will be sorting out the results in reference to “meanofsample” column. decreasing will be true. 
+Since the object “ranks” composed of integer data type, as.data frame(x[ranks,]) will be used to convert the integer data type to a data frame. 
+An object named “decended” will be created and first 10 rows of all the columns will be executed with the command, decended[1:10,]. This will be providing the highest mean values of the samples.
+
 Codes use in solving problem is,
 
-x[order(-x$meanofsamples),
-x_sorted <-x[order(-x$meanofsamples),]
-head(x_sorted,10)
- 
- 
-Following table show the first ten genes with highest genes.
  
 ```{r,chunck3,echo=TRUE}
 ranks <-order(x$meanofsamples,decreasing = T)
@@ -76,12 +66,12 @@ read.table(file="geneexpression.tsv")
 ## Question 4-(Determine the number of genes with a mean <10)
 
 
-To determine the nuber of genes which has mean value less than 10,subsetting has done.filter function  function is selects or filters the rows of the data table that meet certain criteria creating a new data subset and subsetting was done using code filtered <- subset(x, meanofsamples > 10). Then to get the number used the function,nrow(filtered).nrow returns the number of rows that are present in a data frame or matrix. 
+An object name "filtered" is created in environment.
+meanofsample column is selected and >10 condition is applied.
+This function is run in every rows of the column.
+nrow(filtered) command is used to calculate the number of rows which have mean of the samples greater than 10.
 
 Codes use to solving problem is,
-
-filtered <- subset(x, meanofsamples > 10)
-nrow(filtered)
 
 ```{r,chunck4,echo=TRUE}
 filtered <- subset(x, meanofsamples > 10)
@@ -93,19 +83,19 @@ There were 15032 genes with means less than 10.
 ## Question 5 -(Make a histogram plot of the mean values in png format and paste it into your report.
 
 
-Histogram were drawn using hist() function and for easy identification break it to 5 frequencies.histogram were drawn in mean of th samples in the x axis and frequancy was taken to y axis.To save the image in png format export the drawn graph and save the option under png format.
+Histogram were drawn using hist() function and for easy identification break it to 5 frequencies.Use function xlab() to give the title for x-axis, ylab() for title to y-axis,main() is for title of the histogram.To save the image in png format export the drawn graph and save the option under png format.
 
-
-
-
+```{r,chunck5,echo=TRUE}
+hist(x$meanofsamples,main="distribution of mean",xlab="mean of samples",breaks=5)
+```
 
 ## Question 6 -(Import this csv file into an R object. What are the column names?)
 
 
-Initially run args() to find the arguments needed to read a csv file.Then,In order to make an object, the data set needed to be saved under a name in environment.
+Initially run args() to find the arguments needed to read a csv file.In order to make an object, the data set needed to be saved under a name in environment.
 So for that, the name of the object will be given as "R".
-In oder to save the file as an object, run the command. R<-read.csv(file="tree_circumference,csv",header=true,sep=",").
-Then run the command to depict the table in console by typing R .
+In oder to save the file as an object, run the command, R<-read.csv(file="file=link of the raw data",header=true,sep=",").
+Then run the command to depict the table in console by typing R
 To know the names of the columns in the cvs file, run the command, colnames(R).This step will provide with column names as characters.
 
 ```{r,chunck6,echo=TRUE}
@@ -122,7 +112,7 @@ colnames(R)
 To calculate the mean and sd of the both sites, mean() and sd() are used. It shuould be noted that the column needed to be specified from the Table(R).
 Then Make a subset for two sites(northeast and southwest). Name the subset as "Northeast" and "Southwest". 
 In Northeast <-(R[R$Site=="northeast",]) - the name of the subset is Northeast. R is the table which include the data of cvs file.  Define the column of interest in the table using the symbol($). == syntax defines R$Site eqivalent to "northeast".
-In Northeast <-(R[R$Site=="northeast",]) a comma after "northeast" suggest that the function is run in all columns.
+In Northeast <-(R[R$Site=="northeast",]) command, a comma after "northeast" suggest that the function is run in all columns.
 
 Following commands are use to solve the problem.
 
@@ -164,10 +154,11 @@ sd(Southwest$Circumf_2019_cm)
 
 ## Question 8-(Make a box plot of tree circumference at the start and end of the study at both sites) 
 
-Box plots were drawn for both the sites using  the function boxplot() to obtain the box plot for specific column.since it is for both the sites, it is better to run the function by selecting Northeast and Southwest objects instead R.
+Box plots were drawn for both the sites using  the function boxplot().since it is for both the sites, it is better to run the function by selecting Northeast and Southwest objects instead R.
 
 Following codes run to obtain the boxplots for sites.
- 
+
+### Making boxplots for two sites 
 for notheast,
 boxplot(Northeast$Circumf_2004_cm)
 boxplot(Northeast$Circumf_2019_cm)
@@ -191,7 +182,7 @@ boxplot(Southwest$Circumf_2004_cm)
 boxplot(Southwest$Circumf_2019_cm)
 ```
 ### Making a one box plot 
-Combining all the 4 box plots to a single box plot diagram. Use function xlab() to give the title for x-axis, ylab() for title to y-axis,main() is for title of the plot,Names() function is used to give names to each sectors.
+Combine all the 4 box plots to a single box plot diagram. Use function xlab() to give the title for x-axis, ylab() for title to y-axis,main() is for title of the plot,Names() function is used to give names to each sectors.
 
 ```{r,chunck10,echo=TRUE}
 boxplot(main="circumferences of trees in two sites",Northeast$Circumf_2004_cm,Northeast$Circumf_2019_cm,Southwest$Circumf_2004_cm,Southwest$Circumf_2019_cm,names=c("N2004","N2019","S2004","S2019"),ylab="Circumference(cm)",xlab="Trees")
@@ -216,7 +207,8 @@ growth_Southwest
 
 ### Insert the new column to both the tables created under North_east and South_west
 
-syntax $ is used to add the new columns to each respective tables.Northeast$growth_Northeast will be adding the column known as growth_Northeast to Northeast table.Southwest$growth_Southwest will be adding the column known as growth_Southwest to Southwest table
+syntax $ is used to add the new columns to each respective tables.Northeast$growth_Northeast will be adding the column known as growth_Northeast to Northeast table.
+Southwest$growth_Southwest will be adding the column known as growth_Southwest to Southwest table
 
 ```{r,chunck12,echo=TRUE}
 Northeast$growth_Northeast <-rowMeans(Northeast[,c(4:6)])
@@ -235,8 +227,8 @@ t.test(growth_Northeast,growth_Southwest)
 ```
 
 ### Analysing t-test data
-According to the p value which is 9.662e-06, it can be assume that the there is strong evidence aginst nulll hypothesis stating the fact that null hypothesis can  be rejected.
-The mean of northeast is 23.29467 where as mena of southwest is 32.38867. Accoridngly, the mean of southwest is greater than northeast
+According to the p value which is 9.662e-06, it can be assume that the there is strong evidence aginst nulll hypothesis stating the fact that null hypothesis can be rejected.
+The mean of northeast is 23.29467 where as mean of southwest is 32.38867. Accordingly, the mean of growth in southwest is greater than northeast.
 
 ### Application of Wilcox test
 ```{r,chunck14,echo=TRUE}
@@ -247,7 +239,7 @@ wilcox.test(growth_Northeast,growth_Southwest)
 ```{r,chunck15,echo=TRUE}
 wilcox.test(growth_Northeast,growth_Southwest)
 ```
-A larer p value is obtained compared to t-test. Its assumed to be accurate as Wilcox.test relies onn different statstics.
+A larer p value is obtained compared to t-test. It is assumed to be accurate as Wilcox.test relies on different statstics.
 Since Wilcox test is non parametric, the results tend to be less sensitive with more robust.
 
 

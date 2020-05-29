@@ -18,11 +18,11 @@ colnames(R)
 
 #Use the function mean() and sd() to calculate the mean and sd in the numerics. It shuould be noted that the column needed to be specified from the Table(R)
 #Make a subset for two sites(northeast and southwest). Name the subset as "Northeast" and "Southwest"
-#Define the arguments you want to include in the subsets.
+#Obtain the arguments needed to be include in the subsets.
 #As for an example;In Northeast <-(R[R$Site=="northeast",]) - the name of the subset is Northeast. R is the table which include the data of cvs file. 
 #Define the column in the table using the symbol($).== syntax defines R$Site eqivalent to northeast.
 #"" syntax is used in northeast as northeast is a character. 
-#In, Northeast <-(R[R$Site=="northeast",]) the comma after "northeast" suggest that the function is run in all columns.
+#In Northeast <-(R[R$Site=="northeast",]) command, the comma after "northeast" suggest that the function is run in all columns.
 
 ### Northeast
 Northeast <-(R[R$Site=="northeast",])
@@ -57,6 +57,7 @@ boxplot(Southwest$Circumf_2019_cm)
 
 ### Making a one box plot 
 #Combining all the 4 box plots to a single box plot diagram. Use function xlab() to give the title for x-axis, ylab() for title to y-axis,main() is for title of the plot,Names() function is used to give names to each sectors.
+
 boxplot(main="circumferences of trees in two sites",Northeast$Circumf_2004_cm,Northeast$Circumf_2019_cm,Southwest$Circumf_2004_cm,Southwest$Circumf_2019_cm,names=c("N2004","N2019","S2004","S2019"),ylab="Circumference(cm)",xlab="Trees")
 
 ## Question 9(Calculate the mean growth over the past 10 years at each site).
@@ -98,5 +99,3 @@ t.test(growth_Northeast,growth_Southwest)
 args(wilcox.test)
 wilcox.test(growth_Northeast,growth_Southwest)
 
-#A larer p value is obtained compared to t-test. Its assumed to be accurate as Wilcox.test relies onn different statstics.
-#Since Wilcox test is non parametric, the results tend to be less sensitive with more robust

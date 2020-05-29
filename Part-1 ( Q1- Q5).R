@@ -47,13 +47,10 @@ decended[1:10,]
 ## Question-4 (Determine the number of genes with a mean <10)
  
 
-#An object name "Filtered" is created in environment.
-#X x$meanofsample column is selected and >10 condition is applied.
+#An object name "filtered" is created in environment.
+#meanofsample column is selected and >10 condition is applied.
 #This function is run in every rows of the column.
-# nrow(Filtered) command is used to calculate the number of rows which have mean of the samples greater than 10.
-Filtered <-x[(x$meanofsamples>10),]
-nrow(Filtered)
-
+# nrow(filtered) command is used to calculate the number of rows which have mean of the samples greater than 10.
 filtered <- subset(x, meanofsamples > 10)
 nrow(filtered)
 
@@ -61,10 +58,10 @@ nrow(filtered)
 ## Question-5 (Make a histogram plot of the mean values in png format and paste it into your report)
 
 
-### Using hist()comand draw the histogram
-#main() will be the title of the histogram,xlab() and breaks will be 5 frequencies for better graphical representation.
+### Using hist()command, histogram was drawn.
+#main() will be the title of the histogram,xlab() and breaks() will be 5 frequencies for better graphical representation.
 
-hist(x$meanofsamples,main="distribution of mean",xlab="mean of samples",breaks=5 )
+hist(x$meanofsamples,main="distribution of mean",xlab="mean of samples",breaks=5)
 
 
 
