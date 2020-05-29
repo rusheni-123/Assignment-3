@@ -24,12 +24,15 @@ To practice R studio and Git hub collaberation.
 
 ## Contents
 
-gene_expression.tsv-data set for RNA sequence of two samples of interest
-growth_data.csv-contains measurements for tree circumference growing at two sites, control site and treatment site which were planted 20 years ago.
-E.Coli gene sequence database.
-sample.fa-multifasta file of 200 sequences of E.coli
-A sequence of interest known as Groupseq.
-Set of functions(myblastn,myblastn_tab, mutator)
+1.gene_expression.tsv-data set for RNA sequence of two samples of interest
+2.growth_data.csv-contains measurements for tree circumference growing at two sites, control site and treatment site which were planted 20 years ago
+3.x- A tabular representation of gene_expression.tsv
+4.R- A tabular representation of growth_data.csv
+5.E.Coli gene sequence database
+6.samplefastas-multifasta file of 100 sequences of E.coli
+7.Groupseq-A sequence of interest
+8.Groupseq_blast-A blast database 
+10.Set of functions(myblastn,myblastn_tab, mutator,my_blast_test,run_trials)
 
 ## Installation
 

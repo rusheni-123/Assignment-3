@@ -256,11 +256,12 @@ library("ORFik")
 library("Biostrings")
 ```
 
-## Question 1-(Download the whole set of E. coli gene DNA sequences and use gunzip to decompress. Use the makeblast() function to create a blast database. How many sequences are present in the E.coli set?)
+## Question 1-(Download the whole set of E.coli gene DNA sequences and use gunzip to decompress. Use the makeblast() function to create a blast database. How many sequences are present in the E.coli set?)
 
 
 ### Download the whole set of E. coli gene DNA sequences and use gunzip to decompress
-The link with fa.gz extension is selected. fa.gz extension was given to destile name.
+The link with fa.gv is selected since it is mentioned to decompress in the question using gunzip() and fa.gv extension files are compressed files.
+fa.gz extension was given to destile name named "ecoligene"
 
 ```{r,chunck17,echo=TRUE}
 
@@ -269,7 +270,7 @@ download.file('ftp://ftp.ensemblgenomes.org/pub/bacteria/release-42/fasta/bacter
 ```
 
 ### uncompress the file
-R.utils package was used whereas gunzip command assit in unzipping the document. The name of the file was given with the extension.
+R.utils package was used whereas gunzip command assit in unzipping the document.
 overwrite command was selected as True to keep the original file in the system.
 
 ```{r,chunck18,echo=TRUE}
@@ -277,7 +278,8 @@ R.utils::gunzip("ecoligene.fa.gz",overwrite=T)
 ```
 
 ### Making blast data base
-
+A blast data base was created with the function,makeblastdb()
+decompressed file known as "ecoligene.fa" was selected whereas data base type is selected as nucleotides.
 ```{r,chunck19,echo=TRUE}
 makeblastdb("ecoligene.fa",dbtype = "nucl","-parse_seqids")
 ```
@@ -287,7 +289,7 @@ makeblastdb("ecoligene.fa",dbtype = "nucl","-parse_seqids")
 
 
 ### Download the sample fasta sequences and read them in as above. For the allocated sequence and determine the length (in bp) and the proportion of GC bases.
-Downloading the file given in assigment pdf file which is of extension fa.
+Download the file given in assigment pdf file which is of extension fa.
 Since the file is of extension fa,it is clear that the file is already decompressseed.
 
 ```{r,chunck20,echo=TRUE}
@@ -295,14 +297,15 @@ download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master
               destfile = "sample.fa")
 ```
 
-### read.fasta command is given to read the downloaded fasta sequences.
-
+### Reading fasta file
+read.fasta command is given to read the downloaded fasta sequences in the downloaded file.
 downloaded fastas are saved in working directory as "samplefastas"
 ```{r,chunck21,echo=TRUE}
 samplefastas <- read.fasta("sample.fa")
 ```
 
-### one fasta sequence is been selected from the downloaded fasta sequence.
+### Selecting a sequence from fasta file
+one fasta sequence is been selected from the downloaded fasta sequence.
 9th sequence is been selected and saved in the working directory as "Groupseq"
 
 ```{r,chunck22,echo=TRUE}
@@ -352,12 +355,11 @@ Gene trees-EGGT00170000111466
 
 
 ### Application of random mutations
-Run the args() funtion to determine the arguments needed to be fulfilled in order to run the code.
-Run length(Groupseq) to check the length of the sequence.
-Sequence will be Groupseq in this question.
-Complete the arguments for mutator function.
-Save the mutations as a vector named Groupseq_mut. Note that, myseq will be the selected sequence of interest.
-This can be of any number less than the length of the sequence.
+Run length(Groupseq) to check the length of the sequence.sequence will be Groupseq in this excercise.
+Run the args() funtion to determine the arguments needed to be fulfilled in order to run the mutator()
+Complete the arguments for mutator function
+Save the results of mutator function as a vector named Groupseq_mut. Note that, myseq will be the selected sequence of interest(Groupseq)
+nmut will be the number of random mutations which will be applied. This can be of any number less than the length of the sequence.This can be of any number less than the length of the sequence.
 
 ```{r,chunck27,echo=TRUE}
 length(Groupseq)
@@ -369,8 +371,7 @@ Groupseq_mut
 ### Creating a pairwise alignment
 Groupseq_mut needed to be converted to a DNA string for the efficent storage and ease of manipulation of long data sequence.
 c2s function will convert vector of chatacters to a single string.
-PairwiseAlignment function is used to align the selected pairs of sequences.
-In this case, it will be the sequences which have been converted to DNA strings.(Groupseq_mut,groupseq_).
+PairwiseAlignment function is used to align the selected pairs of sequences.In this case, it will be the sequences which have been converted to DNA strings (Groupseq_mut,groupseq_)
 pid function states the % simillarities/identities of two sequences.
 alignment will be the object which stores the results of pairwiseAlignmnet of Groupseq_mut, groupseq_
 
@@ -384,11 +385,11 @@ alignment
 
 ### comparing the aligned sequences
 
-Command 'comparestrings' will depicts the  altered positions between aligned sequences.
+Command 'comparestrings' will depicts the  altered positions between aligned sequences with questionmark(?)
 ```{r,chunck29,echo=TRUE}
 compareStrings(alignment)
 ```
-### number of mismatch is calculated by nmismatch() fucntion.
+### number of mismatch is calculated by nmismatch() function.
 
 ```{r,chunck30echo=TRUE}
 nmismatch(alignment)
@@ -398,32 +399,26 @@ According to the answer, it can be assumed that there are 75 mismatches in the m
 
 ## Question5-(Using the provided functions for mutating and BLASTing a sequence, determine the number and proportion of sites that need to be altered to prevent the BLAST search from matching the gene of origin. Because the mutation is random, you may need to run this test multiple times to get a reliable answer.)
 
-#Using the provided functions for mutating and BLASTing a sequence, determine the number and
-#proportion of sites that need to be altered to prevent the BLAST search from matching the gene of
-#origin. Because the mutation is random, you may need to run this test multiple times to get a reliable
-#answer.
+The basis of this question is to determinae the treshold of the blast so that the blast will be unable to recognise the gene from it's original sequence.
 
+### Making a blast data base
 
-## The basis of this question is to determinae the treshold of the blast so that the blast will be unable to recognise the gene from it's original sequence.
-
-#running blast index
-#creating a data base for the selected sequence 
-#Write.fasta function will be used to create a fasta sequece only for the sequence of interst.
-#In this question, Groupseq will be saved as a fa extension file and a data base of blast will be created based on the Groupseq.
-#dptype is the nucleotides.
+Creating a data base for the selected sequence.Write.fasta function will be used to create a fasta sequence only for the sequence of interst.
+In this question, Groupseq object which composed of fasta sequences will be saved as a file(Groupseq.fa) and a data base of blast will be created based on the Groupseq.
+dptype is the nucleotides.
 
 ```{r,chunck31,echo=TRUE}
 write.fasta(Groupseq,names="Groupseq",file.out = "Groupseq.fa")
 makeblastdb(file="Groupseq.fa",dbtype = "nucl")
 ```
 
-#Groupseq-mut will be named as an object which will save the 10 ramdom mutations.  
-#data base of interest will be the data base created for Groupseq.
-#myblastn_tab will be the function to run the blast.Initially test with 10 random mutations and increase the mutations gradually.
-#Since the final answer needed to be the maximum number of mutations which will not recognise the mutated sequence with original sequence, the function is been applied. 
-#In this function, output will be given as 0 for null(mutated sequence is no longer recognised as a sequence related to originl sequence due to number of mutations  applied) and 1 when the mutated sequence is recognised as a mutated version of original sequence.
-#A new function named "my_blast_test is been declared where the signature of the function composed of myseq which is the sequrence of interest(mutated sequence),and nmut for number of randomm mutations needed to be applied to the sequence of interest.
-#The body of the function will be composing of the ----------- which will be needed to excute the function.
+### Creating my_blast_test function
+
+Since the final answer needed to be the maximum number of mutations which will not recognise the mutated sequence with original sequence, the function named "my_blast_test is declared.
+A new function named "my_blast_test is been declared where the 
+signature of the function composed of myseq which is the sequence of interest(mutated sequence)and nmut for number of randomm mutations needed to be applied to the sequence of interest.
+n this function, output will be given as 0 for null(mutated sequence is no longer recognised as a sequence related to originl sequence due to number of mutations  applied) and 1 when the mutated sequence is recognised as a mutated version of original sequence.
+The body of the function will be composing of the commands which will be needed to excute the function.
 
 ```{r,chunck32,echo=TRUE}
 my_blast_test <- function(myseq,nmut) {
@@ -443,9 +438,10 @@ my_blast_test <- function(myseq,nmut) {
 }
 ```
 
-#Application of the function(my_blast_test)
-#use the replicate to run the code many times.keep increasing nmuts
-#mean(res) will be giving the propotion of succesful blasts
+### Application of the function
+
+use the replicate to run the code many times.keep increasing nmuts
+mean(res) will be giving the propotion of succesful blasts
 
 ```{r,chunck33,echo=TRUE}
 res <- replicate(n=10, my_blast_test(myseq=Groupseq, nmut=10))
@@ -488,7 +484,7 @@ mean(res)
 ## Question 6(Provide a chart or table that shows how the increasing proportion of mutated bases reduces the ability for BLAST to match the gene of origin. Summarise the results in 1 to 2 sentences).Provide a chart or table that shows how the increasing proportion of mutated bases reduces the ability for BLAST to match the gene of origin. Summarise the results in 1 to 2 sentences.
 
 In this question,the propotion of succesul blast hits needed to be taken as a vector in order to draw a graph. 
-In order to do, a fuction is declared naming run_trials which composed of myseq,NMUTS,Ntrials in the signature of the function.
+In order to do, a fuction is declared as "run_trials" which composed of myseq,NMUTS,Ntrials in the signature of the function.
 In this function,the body will composed of the object "res" (n,replicate and my_blast_test).
 
 ```{r,chunck34,echo=TRUE}
@@ -500,8 +496,8 @@ run_trials<- function(myseq,NMUTS,Ntrials){
 ```
 
 
-A vector will be declared which composed of number of random mutations which are needed to be applied to the gene of interest(Group_seq)
-50,100,150,200,250,300 are used as number of  random mutations applied.
+A vector will be declared as "NMUTS" which composed of number of random mutations which are needed to be applied to the gene of interest(Group_seq)
+50,100,150,200,250,300 are used as number of random mutations applied.
 
 ```{r,chunck35,echo=TRUE}
 NMUTS<-c(50,100,150,200,250,300)
