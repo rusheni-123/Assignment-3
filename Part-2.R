@@ -1,5 +1,5 @@
 # PART 2
-
+getwd
 
 library("seqinr")
 library("R.utils")
@@ -20,7 +20,7 @@ download.file('ftp://ftp.ensemblgenomes.org/pub/bacteria/release-42/fasta/bacter
 
 ### uncompress the file
 #?R.utils package was used whereas gunzip command assit in unzipping the document.
-#?overwrite comman was selected as True to keep the original file in the system.
+#?overwrite command was selected as True to keep the original file in the system.
 
 R.utils::gunzip("ecoligene.fa.gz",overwrite=T)
 
@@ -39,12 +39,13 @@ download.file("https://raw.githubusercontent.com/markziemann/SLE712_files/master
 #Read.fasta command is given to read the downloaded fasta sequences in downloaded file.
 #Downloaded fastas are saved in working directory as "samplefastas"
 samplefastas <- read.fasta("sample.fa")
-
+str(samplefastas)
 #one fasta sequence is been selected from the downloaded fasta sequence.
 #9th sequence is been selected and saved in the working directory as
 "Groupseq"
+#double paranthesese([[]]) for choosing single element in a list wheras single paranthesis([]) is for choosing several in a list
 Groupseq <-samplefastas [[9]]
-Groupseq
+Groupseq[1:50]
 
 ### length of 9th fasta seq
 seqinr::getLength(Groupseq)
@@ -77,9 +78,12 @@ args(myblastn_tab)
 #The results of the blast wil be saved as a vector named A
 Groupseq_blast <-myblastn_tab(myseq=Groupseq,db="ecoligene.fa")
 Groupseq_blast
+Groupseq_blast[1:3,]
 str(Groupseq_blast)
 head(Groupseq_blast)
-
+pop<-Groupseq_blast$sseqid[1:3]
+hits<-c(pop,"NC_045512")
+hits
 
 ## Question-4 (You will be provided with a function that enables you to make a set number of point mutations to your sequence of interest. Run the function and write an R code to check the number of mismatches between the original and mutated sequence.)
 
@@ -97,7 +101,7 @@ length(Groupseq)
 args(mutator)
 Groupseq_mut<-mutator(myseq = Groupseq,nmut =100)
 Groupseq_mut
-
+str(Groupseq_mut)
 
 #Creating a pairwise alignment
 #The mutated group sequence saved as Groupseq_mut needed to be converted to a DNA string where the data will be saved as a DNA string.

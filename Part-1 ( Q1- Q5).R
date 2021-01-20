@@ -26,7 +26,7 @@ meanofsamples<-rowMeans(x[,c(2:3)])
 x$meanofsamples<-rowMeans(x[,c(2:3)])
 x[1:6,]
 
-
+class(x)
 ## Question-3 (List the 10 genes with the highest mean expression)
 
 #Values in the column (meanofsamples) will be arranged in descending order and named as "ranks". decreasing argument will be TRUE.
@@ -44,6 +44,11 @@ decended <-as.data.frame(x[ranks,])
 decended[1:10,]
 
 
+#SHORTCUT
+menssam<-x[order(x$meanofsamples,decreasing = T),]
+menssam[1:10,]
+
+
 ## Question-4 (Determine the number of genes with a mean <10)
  
 
@@ -55,6 +60,11 @@ filtered <- subset(x, meanofsamples > 10)
 nrow(filtered)
 
 
+#shortcut
+mean10<-x[x$meanofsamples>10,]
+mean10
+dim(mean10)
+nrow(mean10)
 ## Question-5 (Make a histogram plot of the mean values in png format and paste it into your report)
 
 
