@@ -12,7 +12,7 @@ p<-rowMeans(mtcars)
 mtcars[mtcars$mpg>20 & mtcars$wt>3,]
 
 
-
+MM,MM,M,M,
 
 head(mtcars)
 colnames(mtcars)
